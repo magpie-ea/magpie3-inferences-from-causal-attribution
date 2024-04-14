@@ -1,6 +1,8 @@
 # magpie3-inferences-from-causal-attribution
 
-This is a sample experiment using magpie.
+This repository hosts an online experiment implemented in [magpie](https://magpie-experiments.org/).
+The experiment is designed to investigate inferences that listeners may draw about the preferences or norms of a speaker, when observing the speaker identify the actual cause of an event.
+
 ### Setup
 
 First, set up the project with `npm install`
@@ -12,16 +14,7 @@ To build the project for deployment (e.g. to Netlify), run `npm run build`
 If you are hosting this repository on github, the project will automatically be built and deployed to the gh-pages branch, so you only have to enable Github Pages in your repository settings to publish your project.
 
 For more information, see the [manual](https://magpie-experiments.org/).
+
 ### Coding style
 
 To automatically fix coding style and format the code (linting) run `npm run lint` and `npm run lint:style`
-
-## How to update magpie
-
-```sh
-$ cd your-project
-$ npm update magpie-base
-```
-
-Read more on [maintaining npm dependencies](https://www.carlrippon.com/upgrading-npm-dependencies/).
-
