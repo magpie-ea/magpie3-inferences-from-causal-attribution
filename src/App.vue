@@ -25,8 +25,9 @@
         On each side, the marble is chosen completely at random.
       </p>
 
-      <p>[Machine picture]</p>
-
+      <p>
+        <img src="images/marble-machine.png" />
+      </p>
 
       When the two marbles reach the center, the machine makes a sound.
       The islanders have discovered a simple rule that always determines the sound that the machine makes:
@@ -35,6 +36,13 @@
         <li>Otherwise, the machine makes sound B.</li>
       </ul>
       <strong>Sound B is a simple tone, {{effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'}}</strong>.
+
+      <p>
+      Here is a picture of the possible outcomes when starting the marble machine:
+      </p>
+
+      <p><img :src="outcomes_picture" v-bind:style="{ width: '75%' }">
+      </p>
 
     </InstructionScreen>
 
@@ -52,6 +60,11 @@
       In religion 2, the color Blue is thought to be sinful---for example, believers in Religion 2 avoid using blue paint in their artwork.
       So when they use the marble machine, they think `Blue marbles should not be released’.
       <br><br>
+
+      <p>
+        <img src="images/color-preferences.png" />
+      </p>
+
       Of course, the users of the marble machine cannot control which marbles will come out.
       So, red and blue marbles are equally likely to be released, no matter who presses the Start button.
       Everyone on the island knows how the marble machine works. Even people of different religions completely agree with each other about how the machine works.
@@ -77,7 +90,9 @@
           Because {{mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released'}}, the machine emits sound A, {{effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise'}}.
         </p>
 
-          <p>[Machine picture with outcome]</p>
+          <p><img :src="final_outcome_picture" />
+          </p>
+
           <p>
             The islander says: `<strong>The machine emitted sound A because a {{actual_cause == 'red' ? 'red' : 'blue'}} marble was released</strong>’.
           </p>
@@ -131,6 +146,11 @@ const effect_valence = _.shuffle(["pleasant", "neutral", "unpleasant"])[0];
 
 const actual_cause = _.shuffle(["red", "blue"])[0];
 
+const outcomes_picture = 'images/outcomes-' + mechanism + '-' + effect_valence +'.png'
+
+
+const final_outcome_picture = 'images/final-outcome-' + mechanism + '-' + effect_valence +'.png'
+
 export default {
   name: 'App',
   data() {
@@ -138,6 +158,8 @@ export default {
       mechanism: mechanism,
       effect_valence: effect_valence,
       actual_cause: actual_cause,
+      outcomes_picture: outcomes_picture,
+      final_outcome_picture: final_outcome_picture
     };
   },
   computed: {

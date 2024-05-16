@@ -1,7 +1,9 @@
-# magpie3-inferences-from-causal-attribution
+# material for experiment on preference inference from causal attribution 
 
 This repository hosts an online experiment implemented in [magpie](https://magpie-experiments.org/).
 The experiment is designed to investigate inferences that listeners may draw about the preferences or norms of a speaker, when observing the speaker identify the actual cause of an event.
+
+Here is a [live version](https://magpie-ea.github.io/magpie3-inferences-from-causal-attribution/)
 
 ### Setup
 
