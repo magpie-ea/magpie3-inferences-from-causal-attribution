@@ -48,7 +48,30 @@
 
     <InstructionScreen :title="'Comprehension questions'">
 
-      FILL ME
+      Remember the rule that determines the sound that the machine makes:
+      <ul>
+        <li>When the machine releases <strong>{{  mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble" }}</strong>, the machine makes sound A.</li>
+        <li>Otherwise, the machine makes sound B.</li>
+      </ul>
+
+      To make sure you understand, please select the sound that the machine makes when the following marbles are released:
+      <p>
+        <img src="images/comprehension-blue-red.png" />
+      </p>
+      [A/B]
+      <p>
+        <img src="images/comprehension-blue-green.png" />
+      </p>
+      [A/B]
+      <p>
+        <img src="images/comprehension-yellow-red.png" />
+      </p>
+      [A/B]
+      <p>
+        <img src="images/comprehension-yellow-green.png" />
+      </p>
+      [A/B]
+      
 
     </InstructionScreen>
 
@@ -147,7 +170,6 @@ const effect_valence = _.shuffle(["pleasant", "neutral", "unpleasant"])[0];
 const actual_cause = _.shuffle(["red", "blue"])[0];
 
 const outcomes_picture = 'images/outcomes-' + mechanism + '-' + effect_valence +'.png'
-
 
 const final_outcome_picture = 'images/final-outcome-' + mechanism + '-' + effect_valence +'.png'
 
