@@ -39,7 +39,7 @@
       <strong>Sound B is a simple tone, {{effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'}}</strong>.
 
       <p>
-      Here is a picture of the possible outcomes when starting the marble machine:
+      Here is a picture of the possible outcomes:
       </p>
 
       <p><img :src="outcomes_picture" v-bind:style="{ width: '75%' }">
