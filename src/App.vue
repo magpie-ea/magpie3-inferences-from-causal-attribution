@@ -102,14 +102,67 @@
 
     </InstructionScreen>
 
-    <InstructionScreen :title="'Comprehension questions'">
+    <Screen :title="'Comprehension Test'">
+      <Slide>
+      Please answer the following comprehension question:
+      <p>
+        <strong>
+          On the island, who knows how the machine works?
+        </strong>
+      </p>
 
-      [Comprehension questions:
--On the island, who knows how the machine works? Everyone / only people who believe in Religion 1 / only people who believe in Religion 2 / Noone
--When you activate the machine, you can control which colors get released. True / False]
+      <p/>
 
+        <ForcedChoiceInput
+            :response.sync= "$magpie.measurements.response"
+            :options="['Everyone', 'Followers of Religion 1', 'Followers of Religion 2']"
+            @update:response="$magpie.saveAndNextScreen();"/>
 
-    </InstructionScreen>
+        <Record
+           :data="{
+              trialType : 'comprehension-2',
+              trialNr : 1,
+              correctResponse: 'Everyone',
+              response : $magpie.measurements.response,
+              actual_cause : actual_cause,
+              effect_valence : effect_valence,
+              mechanism : mechanism
+            }"
+          />
+
+      </Slide>
+    </Screen>
+
+    <Screen :title="'Comprehension Test'">
+      <Slide>
+      Please answer the following comprehension question:
+      <p>
+        <strong>
+          When you activate the machine, you can control which colors get released.
+        </strong>
+      </p>
+
+      <p/>
+
+        <ForcedChoiceInput
+            :response.sync= "$magpie.measurements.response"
+            :options="['TRUE', 'FALSE']"
+            @update:response="$magpie.saveAndNextScreen();"/>
+
+        <Record
+           :data="{
+              trialType : 'comprehension-2',
+              trialNr : 2,
+              correctResponse: 'FALSE',
+              response : $magpie.measurements.response,
+              actual_cause : actual_cause,
+              effect_valence : effect_valence,
+              mechanism : mechanism
+            }"
+          />
+
+      </Slide>
+    </Screen>
 
     <Screen>
 
