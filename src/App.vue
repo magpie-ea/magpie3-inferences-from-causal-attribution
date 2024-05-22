@@ -15,12 +15,12 @@
       <p>
 
         In this experiment, you will play the role of an anthropologist visiting a faraway island.
-        A long time ago, the inhabitants of the island discovered an ancient artifact: the marble machine.
-        Nobody knows where the marble machine comes from, but everybody knows how it works.
+        A long time ago, the inhabitants of the island discovered an ancient artifact: <strong>the marble machine</strong>.
+        Nobody knows where the marble machine came from, but everybody knows how it works.
 
         <br>
 
-        The compartment on the right of the marble machine contains red and green marbles, and the one on the left contains blue and yellow marbles.
+        The compartment on the the left of the marble machine contains blue and yellow marbles, and the compartment on the right contains red and green marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
         On each side, the marble is chosen completely at random.
       </p>
@@ -28,6 +28,7 @@
       <p>
         <img src="images/marble-machine.png" />
       </p>
+
 
       When the two marbles reach the center, the machine makes a sound.
       The islanders have discovered a simple rule that always determines the sound that the machine makes:
@@ -46,36 +47,43 @@
 
     </InstructionScreen>
 
-    <InstructionScreen :title="'Comprehension questions'">
+    <template v-for="(trial, i) in comprehension_trials">
+    <Screen>
+      <Slide>
 
       Remember the rule that determines the sound that the machine makes:
-      <ul>
-        <li>When the machine releases <strong>{{  mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble" }}</strong>, the machine makes sound A.</li>
-        <li>Otherwise, the machine makes sound B.</li>
-      </ul>
+      <div style="color: gray">
+        When the machine releases <strong>{{  mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble" }}</strong>, the machine makes sound A.
+        Otherwise, the machine makes sound B.
+      </div>
 
       To make sure you understand, please select the sound that the machine makes when the following marbles are released:
       <p>
-        <img src="images/comprehension-blue-red.png" />
+        <img :src="trial.picture" />
       </p>
-      [A/B]
-      <p>
-        <img src="images/comprehension-blue-green.png" />
-      </p>
-      [A/B]
-      <p>
-        <img src="images/comprehension-yellow-red.png" />
-      </p>
-      [A/B]
-      <p>
-        <img src="images/comprehension-yellow-green.png" />
-      </p>
-      [A/B]
-      
 
-    </InstructionScreen>
+        <ForcedChoiceInput
+            :response.sync= "$magpie.measurements.response"
+            :options="['Sound A', 'Sound B']"
+            @update:response="$magpie.saveAndNextScreen();"/>
 
-    <InstructionScreen :title="'Welcome'">
+        <Record
+           :data="{
+              trialType : 'comprehension',
+              trialNr : i+1,
+              correctResponse: trial.correctResponse,
+              response : $magpie.measurements.response,
+              actual_cause : actual_cause,
+              effect_valence : effect_valence,
+              mechanism : mechanism
+            }"
+          />
+
+      </Slide>
+    </Screen>
+    </template>
+
+    <InstructionScreen :title="'Further Instructions'">
       There are two religions on the island.
       In religion 1, the color Red is thought to be impure---for example, believers in Religion 1 avoid wearing red clothes.
       So when they use the marble machine, they think `Red marbles should not be released’.
@@ -141,6 +149,8 @@
 
         <Record
            :data="{
+              trialType : 'critical',
+              trialNr : 1,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
               mechanism : mechanism
@@ -161,6 +171,8 @@
 
 import _ from 'lodash';
 
+import comprehension_trials_all from '../trials/comprehension.csv';
+
 // mechanism of the machine is conjunctive or disjunctive process
 
 const mechanism = _.shuffle(["conjunctive", "disjunctive"])[0];
@@ -173,6 +185,10 @@ const outcomes_picture = 'images/outcomes-' + mechanism + '-' + effect_valence +
 
 const final_outcome_picture = 'images/final-outcome-' + mechanism + '-' + effect_valence +'.png'
 
+const comprehension_trials = _.filter(comprehension_trials_all, function(i) {return i.mechanism == mechanism})
+
+console.log(comprehension_trials)
+
 export default {
   name: 'App',
   data() {
@@ -181,7 +197,8 @@ export default {
       effect_valence: effect_valence,
       actual_cause: actual_cause,
       outcomes_picture: outcomes_picture,
-      final_outcome_picture: final_outcome_picture
+      final_outcome_picture: final_outcome_picture,
+      comprehension_trials : comprehension_trials
     };
   },
   computed: {
