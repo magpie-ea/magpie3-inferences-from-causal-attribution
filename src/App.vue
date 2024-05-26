@@ -187,8 +187,8 @@
           </p>
 
         <RatingInput
-          left="red balls should not be released"
-          right="blue balls should not be released"
+          left="red marbles should not be released"
+          right="blue marbles should not be released"
           :response.sync= "$magpie.measurements.response"
           />
 
