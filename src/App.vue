@@ -240,8 +240,6 @@ const final_outcome_picture = 'images/final-outcome-' + mechanism + '-' + effect
 
 const comprehension_trials = _.filter(comprehension_trials_all, function(i) {return i.mechanism == mechanism})
 
-console.log(comprehension_trials)
-
 export default {
   name: 'App',
   data() {
