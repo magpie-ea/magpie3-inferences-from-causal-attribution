@@ -127,4 +127,15 @@ faintr::compare_groups(
   fit, 
   higher = effect_valence == 'unpleasant' & mechanism == 'disjunctive',
   lower  = effect_valence == 'unpleasant' & mechanism == 'conjunctive'
-)                       
+)
+
+## 'mechanism-effect' for conjuncttive vs. 'mechanism-effect' for disjunctive
+## -> not credible
+faintr::extract_cell_draws(fit) |> 
+  mutate(
+    mechDiff_conj = `conjunctive:pleasant` - `conjunctive:unpleasant`,
+    mechDiff_disj = `disjunctive:pleasant` - `disjunctive:unpleasant`,
+    interaction   = mechDiff_disj - mechDiff_conj
+    ) |> 
+  pull(interaction) |> 
+  aida::summarize_sample_vector()
