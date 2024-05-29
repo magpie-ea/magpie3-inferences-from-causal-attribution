@@ -129,7 +129,7 @@ faintr::compare_groups(
   lower  = effect_valence == 'unpleasant' & mechanism == 'conjunctive'
 )
 
-## 'mechanism-effect' for conjuncttive vs. 'mechanism-effect' for disjunctive
+## 'mechanism-effect' for conjunctive vs. 'mechanism-effect' for disjunctive
 ## -> not credible
 faintr::extract_cell_draws(fit) |> 
   mutate(
