@@ -1,0 +1,9 @@
+mechanism,trialNr,picture,correctResponse
+disjunctive,1,images/comprehension-blue-red.png,Sound A
+disjunctive,2,images/comprehension-blue-green.png,Sound A
+disjunctive,3,images/comprehension-yellow-red.png,Sound A
+disjunctive,4,images/comprehension-yellow-green.png,Sound B
+conjunctive,1,images/comprehension-blue-red.png,Sound A
+conjunctive,2,images/comprehension-blue-green.png,Sound B
+conjunctive,3,images/comprehension-yellow-red.png,Sound B
+conjunctive,4,images/comprehension-yellow-green.png,Sound B
