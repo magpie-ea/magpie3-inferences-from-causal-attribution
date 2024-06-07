@@ -13,3 +13,7 @@ node_modules
 **/*.synctex.gz
 **/.auctex-auto
 **/.Rhistory
+
+.Rhistory
+.RData
+.Rproj
