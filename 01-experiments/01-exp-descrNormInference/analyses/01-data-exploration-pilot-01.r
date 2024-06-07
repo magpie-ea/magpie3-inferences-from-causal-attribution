@@ -70,17 +70,36 @@ d2 <- d %>%  filter() %>%
   filter(trialType=='critical') %>% 
   mutate(response=ifelse(actual_cause=='red', 8-as.numeric(response),
                                   as.numeric(response)))
+dodgewidth <- .3
+
 # figure
 d2 %>% 
-  ggplot(aes(x=mechanism, y=response, color=effect_valence))+
-  stat_summary(fun='mean')+
-  stat_summary(fun='mean', geom='line', aes(group=effect_valence))+
-  stat_summary(fun.data='mean_se')+
-  scale_color_manual(values=c('blue', 'darkgreen', 'red'))+
+  ggplot(aes(x=mechanism, y=response, color=effect_valence, shape=effect_valence))+
+  stat_summary(fun='mean', position=position_dodge(width=dodgewidth))+
+  stat_summary(fun='mean', geom='line', aes(group=effect_valence),
+               position=position_dodge(width=dodgewidth))+
+
+  stat_summary(fun.data='mean_se', position=position_dodge(width=dodgewidth))+
+  geom_jitter(aes(shape=effect_valence), position = position_jitterdodge(jitter.width = 0.05,
+                                              jitter.height = .2,
+                                              dodge.width = dodgewidth),
+              color='black', alpha=.2) +
+  scale_color_manual(values=c('blue', 'darkgreen', 'red'),
+                     name='outcome valence')+
+  ylab('Inference that cause is norm-violating')+
+  xlab('Structure')+
   scale_y_continuous(breaks=1:7)+
   coord_cartesian(ylim=c(1,7))+
   geom_hline(aes(yintercept=4), linetype='dashed')+
-  theme_classic()
+  theme_classic()+
+  guides(shape='none')+
+  theme(axis.title=element_text(size=16),
+        axis.text=element_text(size=14),
+        legend.title=element_text(size=16),
+        legend.text=element_text(size=13),
+        #legend.position='top'
+        )
+
 
 # t-test in the neutral condition
 dneutral <- d2 %>% filter(effect_valence=='neutral')
