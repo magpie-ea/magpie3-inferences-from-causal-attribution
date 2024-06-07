@@ -1,1 +1,161 @@
-/Users/micha/Desktop/icloud/styles/CSP-styles-and-templates/latex/CSPstyles.sty
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{CSPstyles}[2023/03/16 CSP styles]
+
+% define CSPtext, CSPmain, CSPaccent1, ...
+
+\newif\ifbrght
+\brghtfalse
+\DeclareOption{bright}{
+  \brghttrue
+}
+\ProcessOptions\relax
+
+\RequirePackage{xcolor}
+\RequirePackage{ifthen}
+\RequirePackage{xspace}
+
+
+% full list of all CSP colors and shades
+\definecolor{glaucous-main}{HTML}{7581B3}
+\definecolor{glaucous-bright}{HTML}{3A4FB4}
+\definecolor{glaucous-light-1}{HTML}{969FC5}
+\definecolor{glaucous-light-2}{HTML}{B0B7D4}
+\definecolor{glaucous-light-3}{HTML}{CACFE2}
+\definecolor{glaucous-light-4}{HTML}{E5E7F1}
+\definecolor{glaucous-light-5}{HTML}{FFFFFF}
+\definecolor{glaucous-dark-1}{HTML}{616FA8}
+\definecolor{glaucous-dark-2}{HTML}{505D91}
+\definecolor{glaucous-dark-3}{HTML}{414C76}
+\definecolor{glaucous-dark-4}{HTML}{333B5C}
+\definecolor{glaucous-dark-5}{HTML}{242A42}
+\definecolor{shimmer-main}{HTML}{C65353}
+\definecolor{shimmer-bright}{HTML}{B22222}
+\definecolor{shimmer-light-1}{HTML}{D17575}
+\definecolor{shimmer-light-2}{HTML}{DB9494}
+\definecolor{shimmer-light-3}{HTML}{E6B3B3}
+\definecolor{shimmer-light-4}{HTML}{F0D1D1}
+\definecolor{shimmer-light-5}{HTML}{FAF0F0}
+\definecolor{shimmer-dark-1}{HTML}{B83D3D}
+\definecolor{shimmer-dark-2}{HTML}{993333}
+\definecolor{shimmer-dark-3}{HTML}{7A2929}
+\definecolor{shimmer-dark-4}{HTML}{5C1F1F}
+\definecolor{shimmer-dark-5}{HTML}{3D1414}
+\definecolor{opal-main}{HTML}{99C2C2}
+\definecolor{opal-bright}{HTML}{4092A2}
+\definecolor{opal-light-1}{HTML}{B3D1D1}
+\definecolor{opal-light-2}{HTML}{CCE0E0}
+\definecolor{opal-light-3}{HTML}{E6F0F0}
+\definecolor{opal-light-4}{HTML}{FFFFFF}
+\definecolor{opal-light-5}{HTML}{FFFFFF}
+\definecolor{opal-dark-1}{HTML}{80B3B3}
+\definecolor{opal-dark-2}{HTML}{66A3A3}
+\definecolor{opal-dark-3}{HTML}{548C8C}
+\definecolor{opal-dark-4}{HTML}{457373}
+\definecolor{opal-dark-5}{HTML}{365959}
+\definecolor{crayola-main}{HTML}{E2BA78}
+\definecolor{crayola-bright}{HTML}{EEB14F}
+\definecolor{crayola-light-1}{HTML}{EACB9A}
+\definecolor{crayola-light-2}{HTML}{F1DCBC}
+\definecolor{crayola-light-3}{HTML}{F8EEDD}
+\definecolor{crayola-light-4}{HTML}{FFFFFF}
+\definecolor{crayola-light-5}{HTML}{FFFFFF}
+\definecolor{crayola-dark-1}{HTML}{DBA857}
+\definecolor{crayola-dark-2}{HTML}{D49735}
+\definecolor{crayola-dark-3}{HTML}{B98127}
+\definecolor{crayola-dark-4}{HTML}{976A20}
+\definecolor{crayola-dark-5}{HTML}{765219}
+\definecolor{fern-main}{HTML}{5C7457}
+\definecolor{fern-bright}{HTML}{3C902B}
+\definecolor{fern-light-1}{HTML}{6F8C69}
+\definecolor{fern-light-2}{HTML}{849F7F}
+\definecolor{fern-light-3}{HTML}{9BB096}
+\definecolor{fern-light-4}{HTML}{B1C2AE}
+\definecolor{fern-light-5}{HTML}{C7D3C5}
+\definecolor{fern-dark-1}{HTML}{4A5D46}
+\definecolor{fern-dark-2}{HTML}{374635}
+\definecolor{fern-dark-3}{HTML}{252F23}
+\definecolor{fern-dark-4}{HTML}{121712}
+\definecolor{fern-dark-5}{HTML}{090C09}
+\definecolor{independence-main}{HTML}{575463}
+\definecolor{independence-bright}{HTML}{757A96}
+\definecolor{independence-light-1}{HTML}{757184}
+\definecolor{independence-light-2}{HTML}{9491A1}
+\definecolor{independence-light-3}{HTML}{B4B2BD}
+\definecolor{independence-light-4}{HTML}{D4D3D9}
+\definecolor{independence-light-5}{HTML}{F4F4F6}
+\definecolor{independence-dark-1}{HTML}{44424D}
+\definecolor{independence-dark-2}{HTML}{312F37}
+\definecolor{independence-dark-3}{HTML}{1D1C21}
+\definecolor{independence-dark-4}{HTML}{0A090B}
+\definecolor{independence-dark-5}{HTML}{111111}
+
+
+
+% aliases for common use-cases
+
+\definecolor{CSP-text}{HTML}{575463}             % text color
+\definecolor{CSP-text-light}{HTML}{9491A1}       % 2 shades lighter
+\definecolor{CSP-text-dark}{HTML}{312F37}        % 2 shades darker
+\definecolor{CSP-main}{HTML}{7581B3}             % main theme color
+\definecolor{CSP-main-light}{HTML}{B0B7D4}
+\definecolor{CSP-main-bright}{HTML}{3A4FB4}
+\definecolor{CSP-main-dark}{HTML}{505D91}
+\definecolor{CSP-emphasis}{HTML}{C65353}         % emphasis color
+\definecolor{CSP-emphasis-bright}{HTML}{B22222}
+\definecolor{CSP-emphasis-light}{HTML}{DB9494}
+\definecolor{CSP-emphasis-dark}{HTML}{993333}
+\definecolor{CSP-accent-1}{HTML}{99C2C2}         % 1st accent color
+\definecolor{CSP-accent-1-bright}{HTML}{4092A2}
+\definecolor{CSP-accent-1-light}{HTML}{CCE0E0}
+\definecolor{CSP-accent-1-dark}{HTML}{66A3A3}
+\definecolor{CSP-accent-2}{HTML}{E2BA78}         % 2nd accent color
+\definecolor{CSP-accent-2-bright}{HTML}{EEB14F}
+\definecolor{CSP-accent-2-light}{HTML}{F1DCBC}
+\definecolor{CSP-accent-2-dark}{HTML}{D49735}
+\definecolor{CSP-accent-3}{HTML}{5C7457}         % 3rd accent color
+\definecolor{CSP-accent-3-bright}{HTML}{3C902B}
+\definecolor{CSP-accent-3-light}{HTML}{849F7F}
+\definecolor{CSP-accent-3-dark}{HTML}{374635}
+
+% commands for text colors (some aliases)
+
+% use bright variants if option is set
+\ifbrght
+  \newcommand{\emphasis}[1]{\textcolor{CSP-emphasis-bright}{#1}}
+
+  \newcommand{\accentone}[1]{\textcolor{CSP-accent-1-bright}{#1}}
+  \newcommand{\accenttwo}[1]{\textcolor{CSP-accent-2-bright}{#1}}
+  \newcommand{\accentthre}[1]{\textcolor{CSP-accent-3-bright}{#1}}
+  \newcommand{\accentfour}[1]{\textcolor{CSP-accent-4-bright}{#1}}
+
+  \newcommand{\accX}[1]{\textcolor{CSP-accent-2-bright}{#1}}
+  \newcommand{\accXX}[1]{\textcolor{CSP-accent-3-bright}{#1}}
+
+  % TODO: extend this to enumerate the colors in the same order as for plotting
+  \newcommand{\acc}[2][]{
+    \ifthenelse{\equal{#1}{1}}{\textcolor{CSP-accent-1-bright}{#2}}{%
+      \ifthenelse{\equal{#1}{2}}{\accX{#2}}{%
+        \ifthenelse{\equal{#1}{3}}{\accXX{#2}}{\emphasis{#2}}}}\xspace
+  }
+\else
+
+  \newcommand{\emphasis}[1]{\textcolor{CSP-emphasis}{#1}}
+
+  \newcommand{\accentone}[1]{\textcolor{CSP-accent-1}{#1}}
+  \newcommand{\accenttwo}[1]{\textcolor{CSP-accent-2}{#1}}
+  \newcommand{\accentthre}[1]{\textcolor{CSP-accent-3}{#1}}
+  \newcommand{\accentfour}[1]{\textcolor{CSP-accent-4}{#1}}
+
+  \newcommand{\accX}[1]{\textcolor{CSP-accent-2}{#1}}
+  \newcommand{\accXX}[1]{\textcolor{CSP-accent-3}{#1}}
+
+  % TODO: extend this to enumerate the colors in the same order as for plotting
+  \newcommand{\acc}[2][]{
+    \ifthenelse{\equal{#1}{1}}{\textcolor{CSP-accent-1}{#2}}{%
+      \ifthenelse{\equal{#1}{2}}{\accX{#2}}{%
+        \ifthenelse{\equal{#1}{3}}{\accXX{#2}}{\emphasis{#2}}}}\xspace
+   }
+\fi
+
+\newcommand{\textlight}[1]{\textcolor{CSP-text-light}{#1}}
+\newcommand{\textdark}[1]{\textcolor{CSP-text-dark}{#1}}
