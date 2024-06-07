@@ -1,22 +1,23 @@
 # material for experiment on preference inference from causal attribution 
 
-This repository hosts an online experiment implemented in [magpie](https://magpie-experiments.org/).
-The experiment is designed to investigate inferences that listeners may draw about the preferences or norms of a speaker, when observing the speaker identify the actual cause of an event.
+This repository contains material for a project on pragmatic inferences drawn from causal attribution statements.
 
-Here is a [live version](https://magpie-ea.github.io/magpie3-inferences-from-causal-attribution/)
+## Experiments
 
-### Setup
+All experiments are online experiments, implemented in [magpie](https://magpie-experiments.org/).
 
-First, set up the project with `npm install`
+To run an experiment locally, set up the project with `npm install` (in the experiment directory).
 
 To run the project locally, run `npm run serve`
 
-To build the project for deployment (e.g. to Netlify), run `npm run build`
+### Exp1: Prescriptive norm inference
 
-If you are hosting this repository on github, the project will automatically be built and deployed to the gh-pages branch, so you only have to enable Github Pages in your repository settings to publish your project.
+The experiment is designed to investigate inferences that listeners may draw about the prescriptive norms a speaker may adhere to while controlling for the statistical norm and the subjective likeability of the outcomes.
 
-For more information, see the [manual](https://magpie-experiments.org/).
+[Live version, Exp 1](https://magpie-ea.github.io/magpie3-inferences-from-causal-attribution/01-experiments/01-exp-descrNormInference)
 
-### Coding style
 
-To automatically fix coding style and format the code (linting) run `npm run lint` and `npm run lint:style`
+### Exp2: XXX
+
+
+
