@@ -101,9 +101,7 @@ d2 %>%
         )
 
 
-# t-test in the neutral condition
-dneutral <- d2 %>% filter(effect_valence=='neutral')
-t.test(response~mechanism, data=dneutral)
+
 
 # "omnibus" regression model:
 fit <- brms::brm(response ~ mechanism * effect_valence,
@@ -158,3 +156,29 @@ faintr::extract_cell_draws(fit) |>
     ) |> 
   pull(interaction) |> 
   aida::summarize_sample_vector()
+
+
+
+
+
+### frequentist analysis---------------
+
+# anova
+av <- aov(response ~ mechanism * effect_valence, data=d2)
+summary(av)
+TukeyHSD(av)
+
+# t-test in the neutral condition
+dneutral <- d2 %>% filter(effect_valence=='neutral')
+t.test(response~mechanism, data=dneutral)
+
+# compare to the scale midpoint
+dpos <- d2 %>% filter(effect_valence=='pleasant')
+dneg <- d2 %>% filter(effect_valence=='unpleasant')
+dneutralconj <- dneutral %>% filter(mechanism=='conjunctive')
+dneutraldis <- dneutral %>% filter(mechanism=='disjunctive')
+
+t.test(dpos$response, mu=4)
+t.test(dneg$response, mu=4)
+t.test(dneutralconj$response, mu=4)
+t.test(dneutraldis$response, mu=4)
