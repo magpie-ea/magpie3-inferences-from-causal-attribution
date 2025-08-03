@@ -170,7 +170,7 @@
         <p>
           You see an islander press the Start button to activate the machine.
           So, one marble is randomly released from each compartment at the same time.
-          The marble released from the left compartment is red, and the marble released from the right compartment is blue.
+          The marble released from the left compartment is blue, and the marble released from the right compartment is red.
           Because {{mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released'}}, the machine emits sound A, {{effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise'}}.
         </p>
 
