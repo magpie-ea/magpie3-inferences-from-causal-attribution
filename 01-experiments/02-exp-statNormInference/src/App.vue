@@ -21,26 +21,26 @@
 
         <br>
 
-        The compartment on the the left of the marble machine contains blue and yellow marbles, and the compartment on
+        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on
         the right contains red and green marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
 
         <br>
 
-        The islanders have been observing the machine for many years and realised that differently colored marbles fall
-        with a certain probability. A given amount of marbles from the left compartment out of 10 released tends to be
-        blue and so on.
+        The islanders have been observing the machine for many years and realized that differently colored marbles fall
+        with certain probabilities. A given amount of marbles from the left compartment out of 10 released tends to be
+        blue, and so on.
 
         <br>
 
         However, they are refusing to tell you what these probabilities are. You know that blue and yellow marbles come
-        out of the left compartment and red and green come out of the right compartment and that the probabilities of blue and red marbles are not equal but not what the ratios tend to
-        be.
+        out of the left compartment, and red and green come out of the right compartment and that the probabilities of
+        blue and red marbles are not equal, but not what the ratios tend to be.
 
         <br>
 
-        Of course, the users of the marble machine cannot control which marbles will come out and the machine operates
-        the same, no matter who presses the Start button.
+        Of course, the users of the marble machine cannot control which marbles will come out, and the machine operates
+        the same no matter who presses the Start button.
 
       </p>
 
@@ -59,7 +59,9 @@
         <li>Otherwise, the machine makes sound B.</li>
       </ul>
       <strong>Sound B is a simple tone,
-        {{ effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise' }}</strong>.
+        {{
+          effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'
+        }}</strong>.
 
       <p>
         Here is a picture of the possible outcomes:
@@ -178,9 +180,13 @@
           The marble released from the left compartment is blue, and the marble released from the right compartment is
           red.
           Because
-          {{ mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released' }},
+          {{
+            mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released'
+          }},
           the machine emits sound A,
-          {{ effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise' }}.
+          {{
+            effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise'
+          }}.
         </p>
 
         <p><img :src="final_outcome_picture"/>
@@ -191,7 +197,8 @@
           marble was released</strong>’.
         </p>
         <p>
-          Given what he said, what does the islander know about the probabilities of blue and red marbles being released?
+          Given what he said, what does the islander know about the probabilities of blue and red marbles being
+          released?
           In other words, do you think it is more likely that the islander thinks that red marbles or blue marbles are
           more likely to be released?
           <br>

@@ -21,7 +21,7 @@
 
         <br>
 
-        The compartment on the the left of the marble machine contains blue and yellow marbles, and the compartment on
+        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on
         the right contains red and green marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
         <br>
