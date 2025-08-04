@@ -24,22 +24,28 @@
         The compartment on the the left of the marble machine contains blue and yellow marbles, and the compartment on
         the right contains red and green marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
+
         <br>
-        <strong>Blue marbles are released with a probability of
-          {{ bias == "blue" ? "90" : "10" }}%</strong> from the left compartment, meaning that the released marble will tend to
-        be
-        {{ bias == "blue" ? "blue" : "yellow" }} 9 out of 10 times and
-        {{ bias == "blue" ? "yellow" : "blue" }} 1 out of 10 times.
+
+        The islanders have been observing the machine for many years and realised that differently colored marbles fall
+        with a certain probability. A given amount of marbles from the left compartment out of 10 released tends to be
+        blue and so on.
+
         <br>
-        <strong>Red marbles are released with a probability of
-          {{ bias == "blue" ? "10" : "90" }}%</strong> from the right compartment, meaning that the released marble will tend to
-        be
-        {{ bias == "blue" ? "green" : "red" }} 9 out of 10 times and
-        {{ bias == "blue" ? "red" : "green" }} 1 out of 10 times.
+
+        However, they are refusing to tell you what these probabilities are. You know that blue and yellow marbles come
+        out of the left compartment and red and green come out of the right compartment and that the probabilities of blue and red marbles are not equal but not what the ratios tend to
+        be.
+
+        <br>
+
+        Of course, the users of the marble machine cannot control which marbles will come out and the machine operates
+        the same, no matter who presses the Start button.
+
       </p>
 
       <p>
-        <img :src="biased_marble_machine"/>
+        <img src="images/black-box-marble-machine.png"/>
       </p>
 
 
@@ -53,9 +59,7 @@
         <li>Otherwise, the machine makes sound B.</li>
       </ul>
       <strong>Sound B is a simple tone,
-        {{
-          effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'
-        }}</strong>.
+        {{ effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise' }}</strong>.
 
       <p>
         Here is a picture of the possible outcomes:
@@ -97,8 +101,7 @@
               response : $magpie.measurements.response,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism,
-              bias : bias
+              mechanism : mechanism
             }"
           />
 
@@ -106,86 +109,29 @@
       </Screen>
     </template>
 
-    <Screen>
+    <Screen :title="'Comprehension Test'">
       <Slide>
-        Remember also that the marbles are released with different probabilities:
-        <p style="color: gray">
-          Blue marbles are released with a probability of {{ bias == "blue" ? "90" : "10" }}%.<br>
-          Red marbles are released with a probability of {{ bias == "blue" ? "10" : "90" }}%.
-        </p>
-
+        Please answer the following comprehension question:
         <p>
-          To make sure you understand, please select <strong>which marble is more likely to be released</strong>:
+          <strong>
+            What are the probabilities of blue and red marbles being released by the machine?
+          </strong>
         </p>
 
         <ForcedChoiceInput
             :response.sync="$magpie.measurements.response"
-            :options="['Blue marble', 'Red marble']"
+            :options="['different every time', 'both 50%', 'only the islanders know']"
             @update:response="$magpie.saveAndNextScreen();"/>
 
         <Record
             :data="{
               trialType : 'comprehension-2',
               trialNr : 1,
-              correctResponse: bias,
+              correctResponse: 'only the islanders know',
               response : $magpie.measurements.response,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism,
-              bias : bias
-            }"
-        />
-      </Slide>
-    </Screen>
-
-    <InstructionScreen :title="'Further Instructions'">
-      There are two religions on the island.
-      In religion 1, the color Red is thought to be impure---for example, believers in Religion 1 avoid wearing red
-      clothes.
-      So when they use the marble machine, they think `Red marbles should not be released’.
-      <br><br>
-      In religion 2, the color Blue is thought to be sinful---for example, believers in Religion 2 avoid using blue
-      paint in
-      their artwork.
-      So when they use the marble machine, they think `Blue marbles should not be released’.
-      <br><br>
-
-      <p>
-        <img src="images/color-preferences.png"/>
-      </p>
-
-      Of course, the users of the marble machine cannot control which marbles will come out.
-      So, red marble will be released with a {{ bias == "blue" ? "90" : "10" }}% probability and blue marble will be
-      released with a {{ bias == "blue" ? "10" : "90" }}% probability, no matter who presses the Start button.
-      Everyone on the island knows how the marble machine works. Even people of different religions completely agree
-      with each other about how the machine works.
-
-    </InstructionScreen>
-
-    <Screen :title="'Comprehension Test'">
-      <Slide>
-        Please answer the following comprehension question:
-        <p>
-          <strong>
-            On the island, who knows how the machine works?
-          </strong>
-        </p>
-
-        <ForcedChoiceInput
-            :response.sync="$magpie.measurements.response"
-            :options="['Everyone', 'Followers of Religion 1', 'Followers of Religion 2']"
-            @update:response="$magpie.saveAndNextScreen();"/>
-
-        <Record
-            :data="{
-              trialType : 'comprehension-3',
-              trialNr : 1,
-              correctResponse: 'Everyone',
-              response : $magpie.measurements.response,
-              actual_cause : actual_cause,
-              effect_valence : effect_valence,
-              mechanism : mechanism,
-              bias : bias
+              mechanism : mechanism
             }"
         />
 
@@ -201,6 +147,8 @@
           </strong>
         </p>
 
+        <p/>
+
         <ForcedChoiceInput
             :response.sync="$magpie.measurements.response"
             :options="['TRUE', 'FALSE']"
@@ -208,14 +156,13 @@
 
         <Record
             :data="{
-              trialType : 'comprehension-3',
+              trialType : 'comprehension-2',
               trialNr : 2,
               correctResponse: 'FALSE',
               response : $magpie.measurements.response,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism,
-              bias : bias
+              mechanism : mechanism
             }"
         />
 
@@ -231,13 +178,9 @@
           The marble released from the left compartment is blue, and the marble released from the right compartment is
           red.
           Because
-          {{
-            mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released'
-          }},
+          {{ mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released' }},
           the machine emits sound A,
-          {{
-            effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise'
-          }}.
+          {{ effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise' }}.
         </p>
 
         <p><img :src="final_outcome_picture"/>
@@ -248,16 +191,16 @@
           marble was released</strong>’.
         </p>
         <p>
-          Given what he said, which religion does the islander belong to? In other words, do you think it is more likely
-          that
-          the islander thinks that red marbles or blue marbles shouldn’t be released?
+          Given what he said, what does the islander know about the probabilities of blue and red marbles being released?
+          In other words, do you think it is more likely that the islander thinks that red marbles or blue marbles are
+          more likely to be released?
           <br>
 
         </p>
 
         <RatingInput
-            left="red marbles should not be released"
-            right="blue marbles should not be released"
+            left="red marbles are more likely to be released"
+            right="blue marbles are more likely to be released"
             :response.sync="$magpie.measurements.response"
         />
 
@@ -275,8 +218,7 @@
               trialNr : 1,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism,
-              bias : bias
+              mechanism : mechanism
             }"
         />
 
@@ -304,10 +246,6 @@ const effect_valence = _.shuffle(["pleasant", "neutral", "unpleasant"])[0];
 
 const actual_cause = _.shuffle(["red", "blue"])[0];
 
-const bias = _.shuffle(["red", "blue"])[0];
-
-const biased_marble_machine = 'images/biased-marble-machine-' + bias + '.png'
-
 const outcomes_picture = 'images/outcomes-' + mechanism + '-' + effect_valence + '.png'
 
 const final_outcome_picture = 'images/final-outcome-' + mechanism + '-' + effect_valence + '.png'
@@ -323,8 +261,6 @@ export default {
       mechanism: mechanism,
       effect_valence: effect_valence,
       actual_cause: actual_cause,
-      bias: bias,
-      biased_marble_machine: biased_marble_machine,
       outcomes_picture: outcomes_picture,
       final_outcome_picture: final_outcome_picture,
       comprehension_trials: comprehension_trials
