@@ -15,14 +15,12 @@
       <p>
 
         In this experiment, you will play the role of an anthropologist visiting a faraway island.
-        A long time ago, the inhabitants of the island discovered an ancient artifact: <strong>the marble
-        machine</strong>.
+        A long time ago, the inhabitants of the island discovered an ancient artifact: <strong>the marble machine</strong>.
         Nobody knows where the marble machine came from, but everybody knows how it works.
 
         <br>
 
-        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on the
-        right contains red and green marbles (see picture below).
+        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on the right contains red and green marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
         On each side, the marble is chosen completely at random.
       </p>
@@ -59,14 +57,11 @@
 
           Remember the rule that determines the sound that the machine makes:
           <div style="color: gray">
-            When the machine releases <strong>{{
-              mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
-            }}</strong>, the machine makes sound A.
+            When the machine releases <strong>{{mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble" }}</strong>, the machine makes sound A.
             Otherwise, the machine makes sound B.
           </div>
 
-          To make sure you understand, please select the sound that the machine makes when the following marbles are
-          released:
+          To make sure you understand, please select the sound that the machine makes when the following marbles are released:
           <p>
             <img :src="trial.picture"/>
           </p>
@@ -182,8 +177,7 @@
         <p>
           You see an islander press the Start button to activate the machine.
           So, one marble is randomly released from each compartment at the same time.
-          The marble released from the left compartment is blue, and the marble released from the right compartment is
-          red.
+          The marble released from the left compartment is blue, and the marble released from the right compartment is red.
           Because
           {{ mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released' }},
           the machine emits sound A,
@@ -194,12 +188,11 @@
         </p>
 
         <p>
-          The islander says: `<strong>The machine emitted sound A because a {{ actual_cause == 'red' ? 'red' : 'blue' }}
-          marble was released</strong>’.
+          The islander says: `<strong>The machine emitted sound A because a {{ actual_cause == 'red' ? 'red' : 'blue' }} marble was released</strong>’.
         </p>
         <p>
-          Given what he said, which religion does the islander belong to? In other words, do you think it is more likely
-          that the islander thinks that red marbles or blue marbles shouldn’t be released?
+          Given what he said, which religion does the islander belong to?
+          In other words, do you think it is more likely that the islander thinks that red marbles or blue marbles shouldn’t be released?
           <br>
 
         </p>

@@ -15,14 +15,12 @@
       <p>
 
         In this experiment, you will play the role of an anthropologist visiting a faraway island.
-        A long time ago, the inhabitants of the island discovered an ancient artifact: <strong>the marble
-        machine</strong>.
+        A long time ago, the inhabitants of the island discovered an ancient artifact: <strong>the marble machine</strong>.
         Nobody knows where the marble machine came from, but everybody knows how it works.
 
         <br>
 
-        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on
-        the right contains red and green marbles (see picture below).
+        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on the right contains red and green marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
         <br>
         <strong>Blue marbles are released with a probability of
@@ -46,16 +44,12 @@
       When the two marbles reach the center, the machine makes a sound.
       The islanders have discovered a simple rule that always determines the sound that the machine makes:
       <ul>
-        <li>When the machine releases <strong>{{
-            mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
-          }}</strong>, the machine makes sound A.
+        <li>When the machine releases <strong>{{mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"}}</strong>, the machine makes sound A.
         </li>
         <li>Otherwise, the machine makes sound B.</li>
       </ul>
       <strong>Sound B is a simple tone,
-        {{
-          effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'
-        }}</strong>.
+        {{effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'}}</strong>.
 
       <p>
         Here is a picture of the possible outcomes:
@@ -72,14 +66,11 @@
 
           Remember the rule that determines the sound that the machine makes:
           <div style="color: gray">
-            When the machine releases <strong>{{
-              mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
-            }}</strong>, the machine makes sound A.
+            When the machine releases <strong>{{mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"}}</strong>, the machine makes sound A.
             Otherwise, the machine makes sound B.
           </div>
 
-          To make sure you understand, please select the sound that the machine makes when the following marbles are
-          released:
+          To make sure you understand, please select the sound that the machine makes when the following marbles are released:
           <p>
             <img :src="trial.picture"/>
           </p>
@@ -140,13 +131,10 @@
 
     <InstructionScreen :title="'Further Instructions'">
       There are two religions on the island.
-      In religion 1, the color Red is thought to be impure---for example, believers in Religion 1 avoid wearing red
-      clothes.
+      In religion 1, the color Red is thought to be impure---for example, believers in Religion 1 avoid wearing red clothes.
       So when they use the marble machine, they think `Red marbles should not be released’.
       <br><br>
-      In religion 2, the color Blue is thought to be sinful---for example, believers in Religion 2 avoid using blue
-      paint in
-      their artwork.
+      In religion 2, the color Blue is thought to be sinful---for example, believers in Religion 2 avoid using blue paint in their artwork.
       So when they use the marble machine, they think `Blue marbles should not be released’.
       <br><br>
 
@@ -155,10 +143,8 @@
       </p>
 
       Of course, the users of the marble machine cannot control which marbles will come out.
-      So, red marble will be released with a {{ bias == "blue" ? "90" : "10" }}% probability and blue marble will be
-      released with a {{ bias == "blue" ? "10" : "90" }}% probability, no matter who presses the Start button.
-      Everyone on the island knows how the marble machine works. Even people of different religions completely agree
-      with each other about how the machine works.
+      So, red marble will be released with a {{ bias == "blue" ? "90" : "10" }}% probability and blue marble will be released with a {{ bias == "blue" ? "10" : "90" }}% probability, no matter who presses the Start button.
+      Everyone on the island knows how the marble machine works. Even people of different religions completely agree with each other about how the machine works.
 
     </InstructionScreen>
 
@@ -228,29 +214,22 @@
         <p>
           You see an islander press the Start button to activate the machine.
           So, one marble is randomly released from each compartment at the same time.
-          The marble released from the left compartment is blue, and the marble released from the right compartment is
-          red.
+          The marble released from the left compartment is blue, and the marble released from the right compartment is red.
           Because
-          {{
-            mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released'
-          }},
+          {{mechanism == 'conjunctive' ? 'both a blue and a red marble have been released' : 'at least a red marble or a blue marble has been released'}},
           the machine emits sound A,
-          {{
-            effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise'
-          }}.
+          {{effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise'}}.
         </p>
 
         <p><img :src="final_outcome_picture"/>
         </p>
 
         <p>
-          The islander says: `<strong>The machine emitted sound A because a {{ actual_cause == 'red' ? 'red' : 'blue' }}
-          marble was released</strong>’.
+          The islander says: `<strong>The machine emitted sound A because a {{ actual_cause == 'red' ? 'red' : 'blue' }} marble was released</strong>’.
         </p>
         <p>
-          Given what he said, which religion does the islander belong to? In other words, do you think it is more likely
-          that
-          the islander thinks that red marbles or blue marbles shouldn’t be released?
+          Given what he said, which religion does the islander belong to?
+          In other words, do you think it is more likely that the islander thinks that red marbles or blue marbles shouldn’t be released?
           <br>
 
         </p>
