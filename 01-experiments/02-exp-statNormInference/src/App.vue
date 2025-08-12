@@ -25,7 +25,7 @@
 
         <br>
 
-        The islanders have been observing the machine for many years and discovered that differently colored marbles fall with certain probabilities.
+        The islanders have been observing the machine for many years and discovered that differently colored marbles are released with certain probabilities.
         However, they are refusing to tell you exactly what the probabilities are.
         All you know is that <strong>either blue marbles are released 90% of the time and red marbles 10%, or vice versa</strong> (see picture below).
 

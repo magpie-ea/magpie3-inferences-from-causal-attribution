@@ -19,4 +19,5 @@
 In the second run of Experiment 1, we made slight adjustments to the text and images used. 
 The description of the marble machine in the pilot experiment contained a repeated word error, where `the' was accidentally typed twice in a row.
 Similarly, the text in the pilot incorrectly stated which color marble was released from each compartment after an islander pressed the button on the marble machine.
-And finally, the labels in the images accompanying the description of the marble machine's possible states were changed from `left/right urn' to `left/right compartment' to better reflect the textual description.
+And finally, the labels in the images accompanying the description of the marble machine's possible states were changed from `left/right urn' to `left/right compartment' to better reflect the textual description. 
+Experiments 2 and 3 correspond to the modified text and images from the second run of Experiment 1.
