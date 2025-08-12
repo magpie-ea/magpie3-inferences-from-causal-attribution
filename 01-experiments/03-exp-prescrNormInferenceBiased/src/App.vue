@@ -23,17 +23,9 @@
         The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on the right contains red and green marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
         <br>
-        <strong>Blue marbles are released with a probability of
-          {{ bias == "blue" ? "90" : "10" }}%</strong> from the left compartment, meaning that the released marble will tend to
-        be
-        {{ bias == "blue" ? "blue" : "yellow" }} 9 out of 10 times and
-        {{ bias == "blue" ? "yellow" : "blue" }} 1 out of 10 times.
+        <strong>Blue marbles are released with a probability of {{ bias == "blue" ? "90" : "10" }}%</strong> from the left compartment, meaning that the released marble will tend to be {{ bias == "blue" ? "blue" : "yellow" }} 9 out of 10 times and {{ bias == "blue" ? "yellow" : "blue" }} 1 out of 10 times.
         <br>
-        <strong>Red marbles are released with a probability of
-          {{ bias == "blue" ? "10" : "90" }}%</strong> from the right compartment, meaning that the released marble will tend to
-        be
-        {{ bias == "blue" ? "green" : "red" }} 9 out of 10 times and
-        {{ bias == "blue" ? "red" : "green" }} 1 out of 10 times.
+        <strong>Red marbles are released with a probability of {{ bias == "blue" ? "10" : "90" }}%</strong> from the right compartment, meaning that the released marble will tend to be {{ bias == "blue" ? "green" : "red" }} 9 out of 10 times and {{ bias == "blue" ? "red" : "green" }} 1 out of 10 times.
       </p>
 
       <p>

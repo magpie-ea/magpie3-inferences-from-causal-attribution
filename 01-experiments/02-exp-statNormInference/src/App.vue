@@ -20,18 +20,14 @@
 
         <br>
 
-        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on the right contains red and green marbles (see picture below).
+        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on the right contains red and green marbles.
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
 
         <br>
 
-        The islanders have been observing the machine for many years and realized that differently colored marbles fall with certain probabilities.
-        A given amount of marbles from the left compartment out of 10 released tends to be blue, and so on.
-
-        <br>
-
-        However, they are refusing to tell you what these probabilities are.
-        You know that blue and yellow marbles come out of the left compartment, and red and green come out of the right compartment and that the probabilities of blue and red marbles are not equal, but not what the ratios tend to be.
+        The islanders have been observing the machine for many years and discovered that differently colored marbles fall with certain probabilities.
+        However, they are refusing to tell you exactly what the probabilities are.
+        All you know is that <strong>either blue marbles are released 90% of the time and red marbles 10%, or vice versa</strong> (see picture below).
 
         <br>
 
@@ -114,7 +110,7 @@
 
         <ForcedChoiceInput
             :response.sync="$magpie.measurements.response"
-            :options="['different every time', 'both 50%', 'only the islanders know']"
+            :options="['90% for blue marbles and 10% for red marbles', '10% for blue marbles and 90% for red marbles', 'only the islanders know']"
             @update:response="$magpie.saveAndNextScreen();"/>
 
         <Record
@@ -184,14 +180,14 @@
         </p>
         <p>
           Given what he said, what does the islander know about the probabilities of blue and red marbles being released?
-          In other words, do you think it is more likely that the islander thinks that red marbles or blue marbles are more likely to be released?
+          In other words, do you think it is more likely that the islander knows that red marbles or blue marbles are more likely to be released?
           <br>
 
         </p>
 
         <RatingInput
-            left="red marbles are more likely to be released"
-            right="blue marbles are more likely to be released"
+            left="the islander knows that red marbles are more likely than blue marbles"
+            right="the islander knows that blue marbles are more likely than red marbles"
             :response.sync="$magpie.measurements.response"
         />
 

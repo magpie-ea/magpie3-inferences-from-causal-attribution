@@ -79,7 +79,8 @@
               response : $magpie.measurements.response,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism
+              mechanism : mechanism,
+              fixedTerminology: true
             }"
           />
 
@@ -133,7 +134,8 @@
               response : $magpie.measurements.response,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism
+              mechanism : mechanism,
+              fixedTerminology: true
             }"
         />
 
@@ -164,7 +166,8 @@
               response : $magpie.measurements.response,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism
+              mechanism : mechanism,
+              fixedTerminology: true
             }"
         />
 
@@ -217,7 +220,8 @@
               trialNr : 1,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism
+              mechanism : mechanism,
+              fixedTerminology: true
             }"
         />
 
