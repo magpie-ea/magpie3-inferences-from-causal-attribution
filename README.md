@@ -16,9 +16,13 @@ The experiment is designed to investigate inferences that listeners may draw abo
 
 [Live version, Exp 1](https://magpie-ea.github.io/magpie3-inferences-from-causal-attribution/01-experiments/01-exp-descrNormInference)
 
+[Live version, Exp 1 rerun](https://magpie-ea.github.io/magpie3-inferences-from-causal-attribution/01-experiments/01-exp-rerun-descrNormInference)
+
 
 ### Exp2: Statistical norm inference in the absence of prescriptive norms
 
+[Live version, Exp 2](https://magpie-ea.github.io/magpie3-inferences-from-causal-attribution/01-experiments/02-exp-statNormInference)
 
 ### Exp3: Prescriptive norm inference when (known) statistical norms are biased
 
+[Live version, Exp 3](https://magpie-ea.github.io/magpie3-inferences-from-causal-attribution/01-experiments/03-exp-prescrNormInferenceBiased)
