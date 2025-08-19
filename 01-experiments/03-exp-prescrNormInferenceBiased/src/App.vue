@@ -135,7 +135,7 @@
       </p>
 
       Of course, the users of the marble machine cannot control which marbles will come out.
-      So, red marble will be released with a {{ bias == "blue" ? "90" : "10" }}% probability and blue marble will be released with a {{ bias == "blue" ? "10" : "90" }}% probability, no matter who presses the Start button.
+      So, the machine will release a red marble with {{ bias == "blue" ? "10" : "90" }}% probability and a blue marble with {{ bias == "blue" ? "90" : "10" }}% probability, no matter who presses the Start button.
       Everyone on the island knows how the marble machine works. Even people of different religions completely agree with each other about how the machine works.
 
     </InstructionScreen>
@@ -213,7 +213,14 @@
           {{effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise'}}.
         </p>
 
-        <p><img :src="final_outcome_picture"/>
+        <p>
+          <img style= "width:60%;" :src="callout_biased_marble_machine"/>
+        </p>
+
+        <br>
+
+        <p>
+          <img :src="final_outcome_picture"/>
         </p>
 
         <p>
@@ -279,6 +286,8 @@ const bias = _.shuffle(["red", "blue"])[0];
 
 const biased_marble_machine = 'images/biased-marble-machine-' + bias + '.png'
 
+const callout_biased_marble_machine = 'images/callout-biased-marble-machine-' + bias + '.png'
+
 const outcomes_picture = 'images/outcomes-' + mechanism + '-' + effect_valence + '.png'
 
 const final_outcome_picture = 'images/final-outcome-' + mechanism + '-' + effect_valence + '.png'
@@ -296,6 +305,7 @@ export default {
       actual_cause: actual_cause,
       bias: bias,
       biased_marble_machine: biased_marble_machine,
+      callout_biased_marble_machine: callout_biased_marble_machine,
       outcomes_picture: outcomes_picture,
       final_outcome_picture: final_outcome_picture,
       comprehension_trials: comprehension_trials
