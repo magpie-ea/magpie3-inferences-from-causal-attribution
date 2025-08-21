@@ -186,8 +186,8 @@
         </p>
 
         <RatingInput
-            left="the islander knows that red marbles are more likely than blue marbles"
-            right="the islander knows that blue marbles are more likely than red marbles"
+            left="red marbles are more likely"
+            right="blue marbles are more likely"
             :response.sync="$magpie.measurements.response"
         />
 
