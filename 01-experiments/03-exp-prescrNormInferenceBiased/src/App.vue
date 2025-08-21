@@ -110,7 +110,7 @@
             :data="{
               trialType : 'comprehension-2',
               trialNr : 1,
-              correctResponse: bias,
+              correctResponse: biasCorrectResponse,
               response : $magpie.measurements.response,
               actual_cause : actual_cause,
               effect_valence : effect_valence,
@@ -315,7 +315,13 @@ export default {
     // Expose lodash to template code
     _() {
       return _;
-    }
+    },
+    biasCorrectResponse() {
+      if (this.bias == "blue") {
+        return "Blue marble";
+      } else {
+        return "Red marble";
+      }
   }
 };
 </script>
