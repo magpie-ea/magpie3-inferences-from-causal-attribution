@@ -322,6 +322,7 @@ export default {
       } else {
         return "Red marble";
       }
+    }
   }
 };
 </script>
