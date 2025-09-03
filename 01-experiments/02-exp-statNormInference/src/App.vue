@@ -20,25 +20,14 @@
 
         <br>
 
-        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on the right contains red and green marbles.
+        The compartment on the left of the marble machine contains blue and yellow marbles, and the compartment on the right contains red and green marbles  (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
-
-        <br>
-
-        The islanders have been observing the machine for many years and discovered that differently colored marbles are released with certain probabilities.
-        However, they are refusing to tell you exactly what the probabilities are.
-        All you know is that <strong>either blue marbles are released 90% of the time and red marbles 10%, or vice versa</strong> (see picture below).
-
-        <br>
-
-        Of course, the users of the marble machine cannot control which marbles will come out, and the machine operates the same no matter who presses the Start button.
 
       </p>
 
       <p>
-        <img src="images/black-box-marble-machine.png"/>
+        <img src="images/marble-machine.png"/>
       </p>
-
 
       When the two marbles reach the center, the machine makes a sound.
       The islanders have discovered a simple rule that always determines the sound that the machine makes:
@@ -99,6 +88,29 @@
       </Screen>
     </template>
 
+        <InstructionScreen :title="'Further Instructions'">
+      <p>
+        The islanders have been observing the machine for many years and discovered that differently colored marbles are released with certain probabilities.
+        You don’t know the precise probabilities, but you do know that it is either one of two possible states of affair:
+
+        <ul>
+            <li><strong>Blue marbles are released 90% of the time and red marbles 10% of the time.</strong></li>
+            <li><strong>Red marbles are released 90% of the time and blue marbles 10% of the time.</strong></li>
+        </ul>
+
+      </p>
+      Here is a picture of the two possibilities:
+      <br>
+      <p>
+        <img src="images/black-box-possibilities-marble-machine.png"/>
+      </p>
+
+      <p>
+      Of course, the users of the marble machine cannot control which marbles will come out, and the machine operates the same no matter who presses the Start button.
+      </p>
+
+    </InstructionScreen>
+
     <Screen :title="'Comprehension Test'">
       <Slide>
         Please answer the following comprehension question:
@@ -110,7 +122,7 @@
 
         <ForcedChoiceInput
             :response.sync="$magpie.measurements.response"
-            :options="['90% for blue marbles and 10% for red marbles', '10% for blue marbles and 90% for red marbles', 'only the islanders know']"
+            :options="['90% for blue marbles and 10% for red marbles', '90% for red marbles and 10% for blue marbles', 'only the islanders know']"
             @update:response="$magpie.saveAndNextScreen();"/>
 
         <Record
