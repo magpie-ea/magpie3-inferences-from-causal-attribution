@@ -7,6 +7,9 @@
 - changed options in comprehension question about statistical norms
   - from: '90% for blue marbles and 10% for red marbles', '10% for blue marbles and 90% for red marbles'
   - to:  '90% for blue marbles and 10% for red marbles', '90% for red marbles and 10% for blue marbles'
+- changed information on the first screen 'everybody knows how it works' -> 'everybody on the island knows how it works'
+- changed what information is highlighted in 'Further instructions'
+- changed final task question: 'do you think it is more likely that the islander knows that red marbles or blue marbles are more likely to be released?' -> 'do you think that, according to the islander, red marbles are more likely than blue marbles to be released or the other way around?'
 
 
 We obtained 106 responses to the first version of Experiment 2.
