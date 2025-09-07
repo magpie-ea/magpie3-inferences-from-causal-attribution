@@ -16,7 +16,7 @@
 
         In this experiment, you will play the role of an anthropologist visiting a faraway island.
         A long time ago, the inhabitants of the island discovered an ancient artifact: <strong>the marble machine</strong>.
-        Nobody knows where the marble machine came from, but everybody knows how it works.
+        Nobody knows where the marble machine came from, but everybody on the island knows how it works.
 
         <br>
 
@@ -94,8 +94,8 @@
         You don’t know the precise probabilities, but you do know that it is either one of two possible states of affair:
 
         <ul>
-            <li><strong>Blue marbles are released 90% of the time and red marbles 10% of the time.</strong></li>
-            <li><strong>Red marbles are released 90% of the time and blue marbles 10% of the time.</strong></li>
+            <li><strong>Blue marbles</strong> are released <strong>90%</strong> of the time and <strong>red marbles 10%</strong> of the time.</li>
+            <li><strong>Red marbles</strong> are released <strong>90%</strong> of the time and <strong>blue marbles</strong> <strong>10%</strong> of the time.</li>
         </ul>
 
       </p>
@@ -192,7 +192,7 @@
         </p>
         <p>
           Given what he said, what does the islander know about the probabilities of blue and red marbles being released?
-          In other words, do you think it is more likely that the islander knows that red marbles or blue marbles are more likely to be released?
+          In other words, do you think that, according to the islander, red marbles are more likely than blue marbles to be released or the other way around?
           <br>
 
         </p>
