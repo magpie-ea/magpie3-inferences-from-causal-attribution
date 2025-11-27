@@ -1,0 +1,27 @@
+{
+  "name": "03-exp-prescrstatisnorm-speakerlistener",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "lint:style": "vue-cli-service lint:style"
+  },
+  "dependencies": {
+    "magpie-base": "^3.6.8"
+  },
+  "devDependencies": {
+    "@samhammer/vue-cli-plugin-stylelint": "5.x",
+    "@vue/cli-plugin-eslint": "5.x"
+  },
+  "engines": {
+    "node": "14.x || 16.x || 18.x || 20.x",
+    "npm": ">=7.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
