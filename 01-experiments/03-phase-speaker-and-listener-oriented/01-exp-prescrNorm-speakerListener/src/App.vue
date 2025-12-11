@@ -4,7 +4,7 @@
     <InstructionScreen :title="'Welcome'">
 
       <button @click="$magpie.nextScreen(9)">DEV: Skip to speaker trials</button>
-      <button @click="$magpie.nextScreen(11)">DEV: Skip to listener trials</button>
+      <button @click="$magpie.nextScreen(12)">DEV: Skip to listener trials</button>
 
       Hi! Thanks for taking part!<br/>
       This experiment first introduces a background scenario, which we ask you to read carefully.
@@ -31,16 +31,16 @@
       When the two marbles reach the center, the machine makes a sound.
       The islanders have discovered a simple rule that always determines the sound that the machine makes:
       <ul>
-        <li>When the machine releases <strong>{{
+        <li>When the machine releases <b>{{
             mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
-          }}</strong>, the machine makes sound A.
+          }}</b>, the machine makes sound A.
         </li>
         <li>Otherwise, the machine makes sound B.</li>
       </ul>
-      <strong>Sound B is a simple tone,
+      <b>Sound B is a simple tone,
         {{
           effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'
-        }}</strong>.
+        }}</b>.
 
       <p>
         Here is a picture of the possible outcomes:
@@ -49,31 +49,32 @@
       <img :src="outcomes_picture" v-bind:style="{ width: '75%' }">
     </InstructionScreen>
 
-    <template v-for="(trial, i) in comprehension_trials">
-      <Screen>
-        <Slide>
-          Remember the rule that determines the sound that the machine makes:
-          <div style="color: gray">
-            When the machine releases <strong>{{
-              mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
-            }}</strong>, the machine makes sound A.
-            Otherwise, the machine makes sound B.
-          </div>
+    <template v-for="attempt in [1,2]">
+      <template v-if="attempt==1 | comprehensionFailed" v-for="(trial, i) in comprehension_trials">
+        <Screen>
+          <Slide>
+            Remember the rule that determines the sound that the machine makes:
+            <div style="color: gray">
+              When the machine releases <b>{{
+                mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
+              }}</b>, the machine makes sound A.
+              Otherwise, the machine makes sound B.
+            </div>
 
-          To make sure you understand, please select the sound that the machine makes when the following marbles are
-          released:
+            To make sure you understand, please select the sound that the machine makes when the following marbles are
+            released:
 
-          <p>
-            <img :src="trial.picture" v-bind:style="{ width: '20%' }"/>
-          </p>
-          <ForcedChoiceInput
-              :response.sync="$magpie.measurements.response"
-              :options="['Sound A', 'Sound B']"
-              @update:response="$magpie.saveAndNextScreen();"/>
+            <p>
+              <img :src="trial.picture" v-bind:style="{ width: '20%' }"/>
+            </p>
+            <ForcedChoiceInput
+                :response.sync="$magpie.measurements.response"
+                :options="['Sound A', 'Sound B']"
+                @update:response="saveComprehensionResponse($magpie.measurements.response,trial.correctResponse)"/>
 
-          <Record
-              :data="{
-              trialType : 'comprehension',
+            <Record
+                :data="{
+              trialType : 'comprehension-'+attempt,
               trialNr : i+1,
               correctResponse: trial.correctResponse,
               response : $magpie.measurements.response,
@@ -81,9 +82,37 @@
               effect_valence : effect_valence,
               mechanism : mechanism
             }"
-          />
-        </Slide>
-      </Screen>
+            />
+          </Slide>
+        </Screen>
+      </template>
+
+      <InstructionScreen v-if="attempt==1">
+        <p v-if="!comprehensionFailed">Great, you understood the task! Let’s begin.</p>
+
+        <p v-if="comprehensionFailed"> Oops! You made a mistake.<br/>
+
+          Remember the rule that determines the sound that the machine makes:
+          <ul>
+            <li>When the machine releases <b>{{
+                mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
+              }}</b>, the machine makes sound A.
+            </li>
+            <li>Otherwise, the machine makes sound B.</li>
+          </ul>
+          <b>Sound B is a simple tone,
+            {{
+              effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'
+            }}</b>.
+
+          <br/>
+          <p>Here are the possible outcomes:</p>
+          <img :src="outcomes_picture" v-bind:style="{ width: '75%' }">
+        </p>
+
+        <p v-if="comprehensionFailed">Let’s try again!
+        </p>
+      </InstructionScreen>
     </template>
 
     <InstructionScreen :title="'Further Instructions'">
@@ -113,9 +142,9 @@
       <Slide>
         Please answer the following comprehension question:
         <p>
-          <strong>
+          <b>
             On the island, who knows how the machine works?
-          </strong>
+          </b>
         </p>
 
         <p/>
@@ -144,9 +173,9 @@
       <Slide>
         Please answer the following comprehension question:
         <p>
-          <strong>
+          <b>
             When you activate the machine, you can control which colors get released.
-          </strong>
+          </b>
         </p>
 
         <p/>
@@ -207,19 +236,21 @@
             the following following:
           </p>
           <br/>
-          <b>`The machine made sound A because a {{ trial.left_marble }} marble was released’.</b>
+
+          <b>`The machine made {{ trial.outcome_sound }} because a {{ trial.left_marble }} marble was released’.</b>
           <RatingInput
               left="very unlikely"
               right="very likely"
               :response.sync="$magpie.measurements.responseRelig1Red"
           />
 
-          <b>`The machine made sound A because a {{ trial.right_marble }} marble was released’.</b>
+          <b>`The machine made {{ trial.outcome_sound }} because a {{ trial.right_marble }} marble was released’.</b>
           <RatingInput
               left="very unlikely"
               right="very likely"
               :response.sync="$magpie.measurements.responseRelig1Blue"
           />
+
           <br>
           <p class="instructions">
             Given the situation, decide how likely is the follower of <b>religion 2</b>, who regards blue as impure, to
@@ -227,14 +258,14 @@
           </p>
           <br/>
 
-          <b>`The machine made sound A because a {{ trial.left_marble }} marble was released’.</b>
+          <b>`The machine made {{ trial.outcome_sound }} because a {{ trial.left_marble }} marble was released’.</b>
           <RatingInput
               left="very unlikely"
               right="very likely"
               :response.sync="$magpie.measurements.responseRelig2Red"
           />
 
-          <b>`The machine made sound A because a {{ trial.right_marble }} marble was released’.</b>
+          <b>`The machine made {{ trial.outcome_sound }} because a {{ trial.right_marble }} marble was released’.</b>
           <RatingInput
               left="very unlikely"
               right="very likely"
@@ -293,9 +324,9 @@
 
 
           <p>
-            The islander says: `<strong>The machine emitted sound A because a
+            The islander says: `<b>The machine emitted sound A because a
             {{ actual_cause == 'left' ? trial.left_marble : trial.right_marble }}
-            marble was released</strong>’.
+            marble was released</b>’.
           </p>
           <p>
             Given what he said, which religion does the islander belong to?
@@ -357,6 +388,10 @@ const actual_cause = _.sample(["left", "right"]);
 
 const outcomes_picture = 'images/outcomes-' + mechanism + '-' + effect_valence + '.png'
 
+const comprehension_trials = _.shuffle(_.filter(comprehension_trials_all, function (i) {
+  return i.mechanism == mechanism
+}))
+
 const outcomes_speaker = _.filter(outcomes_speaker_all, function (i) {
   return i.mechanism == mechanism & i.effect_valence == effect_valence;
 })
@@ -369,7 +404,6 @@ const outcomes_listener = _.filter(outcomes_listener_all, function (i) {
 const blue_red_trial = _.filter(outcomes_listener.slice(0, 2), function (i) {
   return i.actual_outcome == actual_cause;
 })[0]
-console.log(blue_red_trial);
 
 const other_trial_outcome = _.sample(["left", "right"]);
 
@@ -379,9 +413,6 @@ const other_trial = _.sample(_.filter(outcomes_listener.slice(2), function (i) {
 
 const listener_trials = _.shuffle([blue_red_trial, other_trial]);
 
-const comprehension_trials = _.filter(comprehension_trials_all, function (i) {
-  return i.mechanism == mechanism
-})
 
 export default {
   name: 'App',
@@ -393,13 +424,20 @@ export default {
       outcomes_picture: outcomes_picture,
       speaker_trials: speaker_trials,
       listener_trials: listener_trials,
-      comprehension_trials: comprehension_trials
+      comprehension_trials: comprehension_trials,
+      comprehensionFailed: false
     };
   },
   computed: {
     // Expose lodash to template code
     _() {
       return _;
+    }
+  },
+  methods: {
+    saveComprehensionResponse: function (response, correctResponse) {
+      this.comprehensionFailed = (this.comprehensionFailed || !(response == correctResponse));
+      $magpie.saveAndNextScreen();
     }
   }
 };
