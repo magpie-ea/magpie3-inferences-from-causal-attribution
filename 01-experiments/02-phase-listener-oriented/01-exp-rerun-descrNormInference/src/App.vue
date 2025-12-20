@@ -77,7 +77,7 @@
               trialNr : i+1,
               correctResponse: trial.correctResponse,
               response : $magpie.measurements.response,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               fixedTerminology: true
@@ -132,7 +132,7 @@
               trialNr : 1,
               correctResponse: 'Everyone',
               response : $magpie.measurements.response,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               fixedTerminology: true
@@ -164,7 +164,7 @@
               trialNr : 2,
               correctResponse: 'FALSE',
               response : $magpie.measurements.response,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               fixedTerminology: true
@@ -191,7 +191,7 @@
         </p>
 
         <p>
-          The islander says: `<strong>The machine emitted sound A because a {{ actual_cause == 'red' ? 'red' : 'blue' }} marble was released</strong>’.
+          The islander says: `<strong>The machine emitted sound A because a {{ actual_outcome == 'red' ? 'red' : 'blue' }} marble was released</strong>’.
         </p>
         <p>
           Given what he said, which religion does the islander belong to?
@@ -218,7 +218,7 @@
             :data="{
               trialType : 'critical',
               trialNr : 1,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               fixedTerminology: true
@@ -247,7 +247,7 @@ const mechanism = _.shuffle(["conjunctive", "disjunctive"])[0];
 
 const effect_valence = _.shuffle(["pleasant", "neutral", "unpleasant"])[0];
 
-const actual_cause = _.shuffle(["red", "blue"])[0];
+const actual_outcome = _.shuffle(["red", "blue"])[0];
 
 const outcomes_picture = 'images/outcomes-' + mechanism + '-' + effect_valence + '.png'
 
@@ -263,7 +263,7 @@ export default {
     return {
       mechanism: mechanism,
       effect_valence: effect_valence,
-      actual_cause: actual_cause,
+      actual_outcome: actual_outcome,
       outcomes_picture: outcomes_picture,
       final_outcome_picture: final_outcome_picture,
       comprehension_trials: comprehension_trials

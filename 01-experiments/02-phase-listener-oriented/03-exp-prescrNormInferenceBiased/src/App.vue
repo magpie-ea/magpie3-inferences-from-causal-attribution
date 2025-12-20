@@ -78,7 +78,7 @@
               trialNr : i+1,
               correctResponse: trial.correctResponse,
               response : $magpie.measurements.response,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               bias : bias
@@ -112,7 +112,7 @@
               trialNr : 1,
               correctResponse: biasCorrectResponse,
               response : $magpie.measurements.response,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               bias : bias
@@ -160,7 +160,7 @@
               trialNr : 1,
               correctResponse: 'Everyone',
               response : $magpie.measurements.response,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               bias : bias
@@ -190,7 +190,7 @@
               trialNr : 2,
               correctResponse: 'FALSE',
               response : $magpie.measurements.response,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               bias : bias
@@ -224,7 +224,7 @@
         </p>
 
         <p>
-          The islander says: `<strong>The machine emitted sound A because a {{ actual_cause == 'red' ? 'red' : 'blue' }} marble was released</strong>’.
+          The islander says: `<strong>The machine emitted sound A because a {{ actual_outcome == 'red' ? 'red' : 'blue' }} marble was released</strong>’.
         </p>
         <p>
           Given what he said, which religion does the islander belong to?
@@ -251,7 +251,7 @@
             :data="{
               trialType : 'critical',
               trialNr : 1,
-              actual_cause : actual_cause,
+              actual_outcome : actual_outcome,
               effect_valence : effect_valence,
               mechanism : mechanism,
               bias : bias
@@ -280,7 +280,7 @@ const mechanism = _.shuffle(["conjunctive", "disjunctive"])[0];
 
 const effect_valence = _.shuffle(["pleasant", "neutral", "unpleasant"])[0];
 
-const actual_cause = _.shuffle(["red", "blue"])[0];
+const actual_outcome = _.shuffle(["red", "blue"])[0];
 
 const bias = _.shuffle(["red", "blue"])[0];
 
@@ -302,7 +302,7 @@ export default {
     return {
       mechanism: mechanism,
       effect_valence: effect_valence,
-      actual_cause: actual_cause,
+      actual_outcome: actual_outcome,
       bias: bias,
       biased_marble_machine: biased_marble_machine,
       callout_biased_marble_machine: callout_biased_marble_machine,

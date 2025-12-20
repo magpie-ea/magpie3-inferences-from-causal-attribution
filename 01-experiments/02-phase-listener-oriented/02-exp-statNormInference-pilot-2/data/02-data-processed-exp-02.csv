@@ -1,4 +1,4 @@
-"","actual_cause","effect_valence","mechanism","response"
+"","actual_outcome","effect_valence","mechanism","response"
 "1","red","pleasant","disjunctive",3
 "2","blue","neutral","disjunctive",2
 "3","red","unpleasant","conjunctive",1

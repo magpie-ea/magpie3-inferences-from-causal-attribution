@@ -1,4 +1,4 @@
-submission_id,actual_cause,age,comments,correctResponse,education,effect_valence,experiment_duration,experiment_end_time,experiment_start_time,gender,languages,mechanism,prolific_pid,prolific_session_id,prolific_study_id,response,responseTime,trialNr,trialType
+submission_id,actual_outcome,age,comments,correctResponse,education,effect_valence,experiment_duration,experiment_end_time,experiment_start_time,gender,languages,mechanism,prolific_pid,prolific_session_id,prolific_study_id,response,responseTime,trialNr,trialType
 3494,red,25,,Sound A,Graduated College,pleasant,220133,1716737387929,1716737167796,male,Engish,disjunctive,610073c79fa52e110665ff7a,6653544578d4cf4381f2ccaf,665353d08d37546e94979ca6,Sound A,11675,1,comprehension
 3494,red,25,,Sound A,Graduated College,pleasant,220133,1716737387929,1716737167796,male,Engish,disjunctive,610073c79fa52e110665ff7a,6653544578d4cf4381f2ccaf,665353d08d37546e94979ca6,Sound A,1292,2,comprehension
 3494,red,25,,Sound A,Graduated College,pleasant,220133,1716737387929,1716737167796,male,Engish,disjunctive,610073c79fa52e110665ff7a,6653544578d4cf4381f2ccaf,665353d08d37546e94979ca6,Sound A,1384,3,comprehension

@@ -68,7 +68,7 @@ length(unique(d$prolific_pid))
 # focus on critical trials, recode response variable
 d2 <- d %>%  filter() %>%
   filter(trialType=='critical') %>% 
-  mutate(response=ifelse(actual_cause=='red', 8-as.numeric(response),
+  mutate(response=ifelse(actual_outcome=='red', 8-as.numeric(response),
                                   as.numeric(response)))
 dodgewidth <- .3
 

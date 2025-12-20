@@ -1,4 +1,4 @@
-submission_id,actual_cause,age,comments,correctResponse,education,effect_valence,experiment_duration,experiment_end_time,experiment_start_time,gender,languages,mechanism,prolific_pid,prolific_session_id,prolific_study_id,response,responseTime,trialNr,trialType
+submission_id,actual_outcome,age,comments,correctResponse,education,effect_valence,experiment_duration,experiment_end_time,experiment_start_time,gender,languages,mechanism,prolific_pid,prolific_session_id,prolific_study_id,response,responseTime,trialNr,trialType
 1897,blue,,,Sound A,,unpleasant,55946,1757270883691,1757270827745,,,disjunctive,684a12ce6791bc422c72abbb,68bdcfb1de5b7ff1ffd14201,68bdb7fd001027b66a95f0f4,Sound A,5115,1,comprehension
 1897,blue,,,Sound A,,unpleasant,55946,1757270883691,1757270827745,,,disjunctive,684a12ce6791bc422c72abbb,68bdcfb1de5b7ff1ffd14201,68bdb7fd001027b66a95f0f4,Sound B,6782,2,comprehension
 1897,blue,,,Sound A,,unpleasant,55946,1757270883691,1757270827745,,,disjunctive,684a12ce6791bc422c72abbb,68bdcfb1de5b7ff1ffd14201,68bdb7fd001027b66a95f0f4,Sound B,1088,3,comprehension
