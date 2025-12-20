@@ -3,9 +3,9 @@
   <Experiment title="CausalAttribInference">
     <InstructionScreen :title="'Welcome'">
       <button @click="$magpie.nextScreen(2)">DEV: Skip to outcome comprehension trials</button>
-      <button @click="$magpie.nextScreen(8)">DEV: Skip to archipelago comprehension trials</button>
-      <button @click="$magpie.nextScreen(9)">DEV: Skip to speaker trials</button>
-      <button @click="$magpie.nextScreen(14)">DEV: Skip to listener trials</button>
+      <button @click="$magpie.nextScreen(7)">DEV: Skip to archipelago comprehension trials</button>
+      <button @click="$magpie.nextScreen(10)">DEV: Skip to speaker trials</button>
+      <button @click="$magpie.nextScreen(15)">DEV: Skip to listener trials</button>
 
       Hi! Thanks for taking part!<br/>
       This experiment first introduces a background scenario, which we ask you to read carefully.
@@ -21,8 +21,9 @@
         They have several of these ancient artefacts; in fact, there is one such machine on each island of the
         archipelago.<br>
         All inhabitants of the archipelago know how the marble machines work:
-        The compartment on the left of each machine contains blue and yellow marbles, and the compartment on the right
-        contains red and green marbles (see picture below).
+        The compartment on the left of each machine contains <span class="blue">blue</span> and <span class="yellow">yellow</span>
+        marbles, and the compartment on the right
+        contains <span class="red">red</span> and <span class="green">green</span> marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
         On each side, the marble is chosen completely at random.
       </p>
@@ -35,8 +36,8 @@
       The islanders have discovered a simple rule that always determines the sound that the machine makes:
       <ul>
         <li>When the machine releases <b>{{
-            mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
-          }}</b>, the machine makes sound A.
+            mechanism == "conjunctive" ? "both" : "either"
+          }} a <span class="red">red</span> and a <span class="blue">blue</span> marble</b>, the machine makes sound A.
         </li>
         <li>Otherwise, the machine makes sound B.</li>
       </ul>
@@ -54,14 +55,15 @@
 
 
     <template v-for="attempt in [1,2]">
-      <template v-if="attempt==1 | comprehensionFailed" v-for="(trial, i) in comprehension_trials">
+      <template v-if="attempt==1 | comprehension_1_failed" v-for="(trial, i) in comprehension_trials">
         <Screen>
           <Slide>
             Remember the rule that determines the sound that the machine makes:
             <div style="color: gray">
               When the machine releases <b>{{
-                mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
-              }}</b>, the machine makes sound A.
+                mechanism == "conjunctive" ? "both" : "either"
+              }} a <span class="red">red</span> and a <span class="blue">blue</span> marble</b>, the machine makes sound
+              A.
               Otherwise, the machine makes sound B.
             </div>
 
@@ -78,13 +80,13 @@
 
             <Record
                 :data="{
-              trialType : 'comprehension-'+ attempt,
+              trialType : 'comprehension-1-'+ attempt,
               trialNr : i+1,
               correctResponse: trial.correctResponse,
               response : $magpie.measurements.response,
-              actual_cause : actual_cause,
               effect_valence : effect_valence,
-              mechanism : mechanism
+              mechanism : mechanism,
+              comprehension_1_failed: comprehension_1_failed
             }"
             />
           </Slide>
@@ -92,15 +94,16 @@
       </template>
 
       <InstructionScreen v-if="attempt == 1">
-        <p v-if="!comprehensionFailed">Great, you understood the task! Let’s begin.</p>
+        <p v-if="!comprehension_1_failed">Great, you understood the task! Let’s begin.</p>
 
-        <p v-if="comprehensionFailed"> Oops! You made a mistake.<br/>
+        <p v-if="comprehension_1_failed"> Oops! You made a mistake.<br/>
 
           Remember the rule that determines the sound that the machine makes:
           <ul>
             <li>When the machine releases <b>{{
-                mechanism == "conjunctive" ? "both a red and a blue marble" : "either a red or a blue marble"
-              }}</b>, the machine makes sound A.
+                mechanism == "conjunctive" ? "both" : "either"
+              }} a <span class="red">red</span> and a <span class="blue">blue</span> marble</b>, the machine makes sound
+              A.
             </li>
             <li>Otherwise, the machine makes sound B.</li>
           </ul>
@@ -110,13 +113,11 @@
             }}</b>.
 
           <br/>
-          <p>
-            Here are the possible outcomes:
-          </p>
+          <p v-if="comprehension_1_failed">Here are the possible outcomes:</p>
           <img :src="outcomes_picture" v-bind:style="{ width: '75%' }">
         </p>
 
-        <p v-if="comprehensionFailed">Let’s try again!
+        <p v-if="comprehension_1_failed">Let’s try again!
         </p>
       </InstructionScreen>
     </template>
@@ -124,20 +125,23 @@
     <InstructionScreen :title="'Further Instructions'">
       <p>
         The basic mechanism is the same in marble machines on all of the islands.
-        However, machines on different islands release the marbles with different probabilities.<br>
+        However, machines on different islands release marbles with different probabilities, and islanders are only
+        familiar with the machines on their own islands, not with any others.<br>
 
         Across the islands of the archipelago, there are two kinds of machines:
         <ul>
-          <li>On <b>B-G</b> islands, the machines release blue and green marbles <b>90%</b> of the time and yellow and
-            red marbles <b>10%</b> of the time.<br/>
+          <li>On <b>B-G</b> islands, the machines release <span class="blue">blue</span> and <span
+              class="green">green</span> marbles <b>90%</b> of the time and <span class="yellow">yellow</span> and
+            <span class="red">red</span> marbles <b>10%</b> of the time.
             We use this icon to label them:
             <p style="text-align: center">
               <img src="images/label-B-G.png" v-bind:style="{ width: '15%' }">
             </p>
           </li>
 
-          <li>On <b>Y-R</b> islands, the machines release yellow and red marbles <b>90%</b> of the time and blue and
-            green marbles <b>10%</b> of the time.<br/>
+          <li>On <b>Y-R</b> islands, the machines release <span class="yellow">yellow</span> and <span
+              class="red">red</span> marbles <b>90%</b> of the time and <span class="blue">blue</span> and
+            <span class="green">green</span> marbles <b>10%</b> of the time.
             We use this icon to label them:
             <p style="text-align: center">
               <img src="images/label-Y-R.png" v-bind:style="{ width: '15%' }">
@@ -150,64 +154,170 @@
       <img src="images/marble-machines-B-G-Y-R.png">
     </InstructionScreen>
 
+
+    <Screen>
+      <Slide>
+        <p class="instructions"><b>When the machine is activated, can the user control which colors are released?</b>
+          <MultipleChoiceInput
+              :response.sync="$magpie.measurements.response_control"
+              :options="['Yes', 'No', 'Cannot say']"/>
+        </p>
+        <br>
+
+        <p class="instructions">
+          <b>Does a person from island labeled <img src="images/label-B-G.png" style="width: 8%; vertical-align: middle"/> know about a machine from an island labeled <img src="images/label-Y-R.png" style="width: 8%; vertical-align: middle"/>, or vice versa? </b>
+          <MultipleChoiceInput
+              :response.sync="$magpie.measurements.response_awareness"
+               :options="['Yes', 'No', 'Cannot say']"/>
+        </p>
+        <br>
+         <p v-if="true">
+          <button @click="$magpie.saveAndNextScreen()">Submit</button>
+        </p>
+         <Record
+            :data="{
+              trialType : 'comprehension-2',
+              trialNr : 1,
+              effect_valence : effect_valence,
+              mechanism : mechanism,
+              response_control : $magpie.measurements.response_control,
+              correct_response_control : 'No',
+              response_awareness : $magpie.measurements.response_awareness,
+              correct_response_awareness : 'No'
+            }"
+        />
+      </Slide>
+    </Screen>
     <Screen>
       <Slide>
 
-        <MultipleChoiceMatrixInput
-            :options="['True','False']"
-            :questions="[
-              'How is the weather today?',
-              'How was your breakfast today?',
-              'How do you like your job?',
-              'What is your opinion of television?',
-              'What is your opinion of folk music?'
-            ]"
-            :responses.sync="$magpie.measurements.responses"
-        />
+        <p class="instructions"><b>Would a person from an island labeled <img src="images/label-B-G.png" style="width: 8%; vertical-align: middle"/>
+          say that a <span class="blue">blue</span> marble is more likely to be released than a <span class="yellow">yellow</span>
+          marble?</b>
+          <MultipleChoiceInput
+              :response.sync="$magpie.measurements.response_bg"
+              :options="['Yes', 'No', 'Cannot say']"/>
+        </p>
+        <br>
 
+        <p class="instructions">
+          <b>Which of the following is a person from an island labeled <img src="images/label-Y-R.png" style="width: 8%; vertical-align: middle"/>
+            most likely to say?</b>
+          <MultipleChoiceInput
+              :response.sync="$magpie.measurements.response_yr"
+              :options="['The probability of a blue marble being released is either 90% or 10%.', 'The probability of a yellow marble being released is the same as of a red marble being released.', 'The probability of a green ball being released is 50%.']"/>
+        </p>
+        <br>
+
+        <p class="instructions">
+          <b>Would a person from an island that is <u>not</u> labeled either <img src="images/label-B-G.png"
+                                                     style="width: 8%; vertical-align: middle"/> or <img src="images/label-Y-R.png" style="width: 8%; vertical-align: middle"/> say that a <span
+              class="red">red</span> marble
+            is more likely to be released than a <span class="green">green</span> marble?</b>
+          <MultipleChoiceInput
+              :response.sync="$magpie.measurements.response_unk"
+              :options="['Yes', 'No', 'Cannot say']"/>
+        </p>
+        <br>
         <p v-if="true">
           <button @click="$magpie.saveAndNextScreen()">Submit</button>
         </p>
+        <Record
+            :data="{
+              trialType : 'comprehension-2',
+              trialNr : 2,
+              effect_valence : effect_valence,
+              mechanism : mechanism,
+              response_bg : $magpie.measurements.response_bg,
+              correct_response_bg : 'Yes',
+              response_yr : $magpie.measurements.response_yr,
+              correct_response_yr : 'The probability of a yellow marble being released is the same as of a red marble being released.',
+              response_unk : $magpie.measurements.response_unk,
+              correct_response_unk : 'Cannot say'
+            }"
+        />
       </Slide>
     </Screen>
 
     <InstructionScreen :title="'Further Instructions'">
       <p>
         Here we have a map of the archipelago, based on previous anthropological surveys.
-        You will now visit some of the islands.
+        Notice, that one island is labeled <img src="images/label-unknown.png" style="width: 8%; vertical-align: middle"/>; this means that we don't know whether it is a <b>B-G</b> or a <b>Y-R</b> island.
       </p>
       <img src="images/archipelago-map-labeled.png">
+      <p>
+        You will now visit some of the islands.
+      </p>
     </InstructionScreen>
 
     <template v-for="(trial, i) in speaker_trials">
       <Screen>
         <Slide>
 
-          <img :src="'images/island-'+trial.stat_bias+'.png'" v-bind:style="{ width: '25%' }"/><br>
+          <img :src="'images/island-'+trial.island_type+'.png'" v-bind:style="{ width: '25%' }"/><br>
           <p class="instructions">
 
             <span v-if="i==0">
-              Your journey leads first to an island categorised as {{ trial.stat_bias }}. So the machine on this island releases {{
-                trial.stat_bias == "b-g" ? "blue and green" : "yellow and red"
-              }} marbles 90% of the time and {{ trial.stat_bias == "b-g" ? "yellow and red" : "blue and green" }} marbles 10% of the time.<br/>
+              Your journey leads first to an island categorised as {{ trial.island_type }}.
+              So the machine on this island releases
+              <span :class='trial.island_type == "b-g" ? "blue" : "yellow"'>{{
+                  trial.island_type == "b-g" ? "blue" : "yellow"
+                }}</span>
+              and
+              <span :class='trial.island_type == "b-g" ? "green" : "red"'>{{
+                  trial.island_type == "b-g" ? "green" : "red"
+                }}</span>
+              marbles 90% of the time and
+              <span :class='trial.island_type == "b-g" ? "yellow" : "blue"'>{{
+                  trial.island_type == "b-g" ? "yellow" : "blue"
+                }}</span>
+              and
+              <span :class='trial.island_type == "b-g" ? "red" : "green"'>{{
+                  trial.island_type == "b-g" ? "red" : "green"
+                }}</span>
+              marbles 10% of the time.<br/>
               Here, you see an islander who presses the Start button on their island's marble machine to activate it.
-              So, one marble is randomly released from each compartment at the same time.
             </span>
+
+            <span v-if="i==2">
+              Next, you travel to an island categorised as {{ trial.island_type }}.
+              So the machine on this island releases
+              <span :class='trial.island_type == "b-g" ? "blue" : "yellow"'>{{
+                  trial.island_type == "b-g" ? "blue" : "yellow"
+                }}</span>
+              and
+              <span :class='trial.island_type == "b-g" ? "green" : "red"'>{{
+                  trial.island_type == "b-g" ? "green" : "red"
+                }}</span>
+              marbles 90% of the time and
+              <span :class='trial.island_type == "b-g" ? "yellow" : "blue"'>{{
+                  trial.island_type == "b-g" ? "yellow" : "blue"
+                }}</span>
+              and
+              <span :class='trial.island_type == "b-g" ? "red" : "green"'>{{
+                  trial.island_type == "b-g" ? "red" : "green"
+                }}</span>
+              marbles 10% of the time.<br/>
+              Here, you see an islander who presses the Start button on their island's marble machine to activate it.
+            </span>
+
             <span v-else>
               The islander presses the button again.
-              So, one marble is randomly released from each compartment at the same time.
-
               </span>
-            The marble released from the left compartment is {{ trial.left_marble }},
-            and the marble released from the right compartment is {{ trial.right_marble }}.
+            So, one marble is randomly released from each compartment at the same time.
+            The marble released from the left compartment is <span :class="trial.left_marble">{{ trial.left_marble }}</span>,
+            and the marble released from the right compartment is <span :class="trial.right_marble">{{ trial.right_marble }}</span>.
             Because
-            {{
-              (trial.left_marble == 'blue' & trial.right_marble == 'red' ? (mechanism == 'conjunctive' ? 'both a blue marble and a red marble have' : 'at least a blue marble or a red marble has') :
-                  (trial.left_marble == 'blue' | trial.right_marble == 'red' ? (mechanism == 'conjunctive' ? 'both a blue and a red marble have not' : 'at least a blue marble or a red marble has') :
-                          (mechanism == 'conjunctive' ? 'both a blue and a red marble have not' : 'at least a blue marble or a red marble has not')
-                  ))
-            }} been released, the machine emits {{ trial.outcome_sound }},
-
+            {{ (mechanism == 'conjunctive' ? "both " : "at least ") }}
+            a <span class="blue">blue</span> marble
+            {{ (mechanism == 'conjunctive' ? "and " : "or ") }}
+            <span class="red">red</span> marble
+            {{ (mechanism == 'conjunctive' ? "have " : "has ") }}
+            <u>{{
+              (trial.left_marble == 'blue' & trial.right_marble == 'red' ? '' :
+                  (trial.left_marble == 'blue' | trial.right_marble == 'red' ? (mechanism == 'conjunctive' ? 'not' : '') : 'not'))
+            }}</u>
+            been released, the machine emits {{ trial.outcome_sound }},
             {{
               trial.outcome_sound == 'sound A' ? (effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise') : ('a simple tone')
             }}.
@@ -221,18 +331,18 @@
           </p>
           <br/>
 
-          <b>`The machine made {{ trial.outcome_sound }} because a {{ trial.left_marble }} marble was released’.</b>
+          <b>'The machine made {{ trial.outcome_sound }} because a <span :class="trial.left_marble">{{ trial.left_marble }}</span> marble was released'.</b>
           <RatingInput
               left="very unlikely"
               right="very likely"
-              :response.sync="$magpie.measurements.responseRelig2Red"
+              :response.sync="$magpie.measurements.response_left"
           />
 
-          <b>`The machine made {{ trial.outcome_sound }} because a {{ trial.right_marble }} marble was released’.</b>
+          <b>'The machine made {{ trial.outcome_sound }} because a <span :class="trial.right_marble">{{ trial.right_marble }}</span> marble was released'.</b>
           <RatingInput
               left="very unlikely"
               right="very likely"
-              :response.sync="$magpie.measurements.responseRelig2Blue"
+              :response.sync="$magpie.measurements.response_right"
           />
 
           <p v-if="true">
@@ -242,8 +352,15 @@
           <Record
               :data="{
               trialType : 'critical-speaker',
-              trialNr : 1,
-            //TODO: what more to log?
+              trialNr : i,
+              mechanism: mechanism,
+              effect_valence: effect_valence,
+              island_type : trial.island_type,
+              left_marble : trial.left_marble,
+              right_marble : trial.right_marble,
+              outcome_sound : trial.outcome_sound,
+              response_left : $magpie.measurements.response_left,
+              response_right : $magpie.measurements.response_right
             }"
           />
         </Slide>
@@ -258,7 +375,7 @@
           <p class="instructions">
 
             <span v-if="i==0">
-              Finally, you sail to an island which has not yet been categorised as either B-G or Y-R.
+              Finally, you sail to an island which has not yet been categorised as either B-G or Y-R.<br>
               On the island, you see an islander who presses the Start button on their island’s marble machine to activate it.
               So, one marble is randomly released from each compartment at the same time.
             </span>
@@ -266,16 +383,19 @@
               The islander presses the button again.
               So, one marble is randomly released from each compartment at the same time.
               </span>
-            The marble released from the left compartment is {{ trial.left_marble }},
-            and the marble released from the right compartment is {{ trial.right_marble }}.
+            The marble released from the left compartment is <span :class="trial.left_marble">{{ trial.left_marble }}</span>,
+            and the marble released from the right compartment is <span :class="trial.right_marble">{{ trial.right_marble }}</span>.
             Because
-            {{
-              (trial.left_marble == 'blue' & trial.right_marble == 'red' ? (mechanism == 'conjunctive' ? 'both a blue marble and a red marble have' : 'at least a blue marble or a red marble has') :
-                  (trial.left_marble == 'blue' | trial.right_marble == 'red' ? (mechanism == 'conjunctive' ? 'both a blue and a red marble have not' : 'at least a blue marble or a red marble has') :
-                          (mechanism == 'conjunctive' ? 'both a blue and a red marble have not' : 'at least a blue marble or a red marble has not')
-                  ))
-            }} been released, the machine emits {{ trial.outcome_sound }},
-
+            {{ (mechanism == 'conjunctive' ? "both " : "at least ") }}
+            a <span class="blue">blue</span> marble
+            {{ (mechanism == 'conjunctive' ? "and " : "or ") }}
+            <span class="red">red</span> marble
+            {{ (mechanism == 'conjunctive' ? "have " : "has ") }}
+            <u>{{
+              (trial.left_marble == 'blue' & trial.right_marble == 'red' ? '' :
+                  (trial.left_marble == 'blue' | trial.right_marble == 'red' ? (mechanism == 'conjunctive' ? 'not' : '') : 'not'))
+            }}</u>
+            been released, the machine emits {{ trial.outcome_sound }},
             {{
               trial.outcome_sound == 'sound A' ? (effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise') : ('a simple tone')
             }}.
@@ -287,46 +407,49 @@
           <br>
           <br>
           <p class="instructions">
-            And this time, you hear the islander say: <b>'The machine made {{ trial.outcome_sound }} because a
-            {{ trial.left_marble }} marble was released'</b>.
+            And this time, you hear the islander say:
           </p>
-
-          <br>
+          <p>
+            <b>'The machine made {{ trial.outcome_sound }} because a <span :class="trial.actual_outcome == 'left' ? trial.left_marble : trial.right_marble">{{ trial.actual_outcome == 'left' ? trial.left_marble : trial.right_marble }}</span> marble was released'</b>.
+          </p>
           <p class="instructions">
-            Given what the islander said, which category do you think the island should be assigned?<br>
-            In other words, do you think that category <img :src="'images/label-B-G.png'" v-bind:style="{ width: '8%' }" style="vertical-align: middle;"/>
-            is more likely or category <img :src="'images/label-Y-R.png'" v-bind:style="{ width: '8%' }"  style="vertical-align: middle;"/> is more likely for this island?
-
+            Given what the islander said, which category do you think the island should be assigned?
+            In other words, do you think that category <img :src="'images/label-B-G.png'"
+                                                            style="width: 8%; vertical-align: middle"/>
+            is more likely or category <img :src="'images/label-Y-R.png'" style="width: 8%; vertical-align: middle"/> is
+            more likely for this island?
           </p>
-          <br>
 
           <RatingInput
               left="category B-G is more likely"
               right="category Y-R is more likely"
-              :response.sync="$magpie.measurements.response"
+              :response.sync="$magpie.measurements.response_unk"
           />
 
           <span style="color: gray">choices of 1 and 7 express relative confidence for one of the options</span>
           <br>
           <span style="color: gray">choice of 4 expresses total uncertainty</span>
 
-          <p v-if="$magpie.measurements.response > 0">
+          <p v-if="$magpie.measurements.response_unk > 0">
             <button @click="$magpie.saveAndNextScreen();">Submit</button>
           </p>
 
           <Record
               :data="{
               trialType : 'critical-listener',
-              trialNr : 1,
-              actual_cause : actual_cause,
+              trialNr : i,
               effect_valence : effect_valence,
-              mechanism : mechanism
+              mechanism : mechanism,
+              actual_outcome : trial.actual_outcome,
+              left_marble : trial.left_marble,
+              right_marble : trial.right_marble,
+              outcome_sound : trial.outcome_sound,
+              response_unnk : $magpie.measurements.response_unk
             }"
           />
         </Slide>
       </Screen>
     </template>
-    >
 
     <SubmitResultsScreen/>
   </Experiment>
@@ -338,47 +461,39 @@ import comprehension_trials_all from '../trials/comprehension.csv';
 import outcomes_speaker_all from '../trials/outcomes_speaker.csv';
 import outcomes_listener_all from '../trials/outcomes_listener.csv';
 
+// mechanism of the machine is conjunctive or disjunctive process
 const mechanism = _.shuffle(["conjunctive", "disjunctive"])[0];
 
-console.log('LOG: mechanism ' + mechanism);
 const effect_valence = _.shuffle(["pleasant", "neutral", "unpleasant"])[0];
-
-const actual_cause = _.shuffle(["left", "right"])[0];
 
 const outcomes_picture = 'images/outcomes-' + mechanism + '-' + effect_valence + '.png'
 
-// const final_outcome_picture = 'images/final-outcome-' + mechanism + '-' + effect_valence + '.png'
-
+// comprehension
 const comprehension_trials = _.shuffle(_.filter(comprehension_trials_all, function (i) {
   return i.mechanism == mechanism
 }))
 
-
-// needs changing VV
+// speaker trials
 const outcomes_speaker_BG = _.filter(outcomes_speaker_all, function (i) {
-  return i.mechanism == mechanism & i.effect_valence == effect_valence & i.stat_bias == "B-G";
+  return i.mechanism == mechanism & i.effect_valence == effect_valence & i.island_type == "B-G";
 })
-console.log(outcomes_picture);
 const outcomes_speaker_YR = _.filter(outcomes_speaker_all, function (i) {
-  return i.mechanism == mechanism & i.effect_valence == effect_valence & i.stat_bias == "Y-R";
+  return i.mechanism == mechanism & i.effect_valence == effect_valence & i.island_type == "Y-R";
 })
-
 const speaker_trials = _.shuffle([_.shuffle([outcomes_speaker_BG[0], _.sample(outcomes_speaker_BG.slice(1))]), _.shuffle([outcomes_speaker_YR[0], _.sample(outcomes_speaker_YR.slice(1))])]).flat();
 
+// listener trials
 const outcomes_listener = _.filter(outcomes_listener_all, function (i) {
   return i.mechanism == mechanism & i.effect_valence == effect_valence;
 })
-
+const main_trial_outcome = _.sample(["left", "right"]);
 const blue_red_trial = _.filter(outcomes_listener.slice(0, 2), function (i) {
-  return i.actual_outcome == actual_cause;
+  return i.actual_outcome == main_trial_outcome;
 })[0]
-
 const other_trial_outcome = _.sample(["left", "right"]);
-
 const other_trial = _.sample(_.filter(outcomes_listener.slice(2), function (i) {
   return i.actual_outcome == other_trial_outcome;
 }))
-
 const listener_trials = _.shuffle([blue_red_trial, other_trial]);
 
 export default {
@@ -387,13 +502,11 @@ export default {
     return {
       mechanism: mechanism,
       effect_valence: effect_valence,
-      actual_cause: actual_cause,
       outcomes_picture: outcomes_picture,
-      // final_outcome_picture: final_outcome_picture,
       speaker_trials: speaker_trials,
       listener_trials: listener_trials,
       comprehension_trials: comprehension_trials,
-      comprehensionFailed: false
+      comprehension_1_failed: false
     };
   },
   computed: {
@@ -403,8 +516,8 @@ export default {
     }
   },
   methods: {
-    saveComprehensionResponse: function (response, correctResponse) {
-      this.comprehensionFailed = (this.comprehensionFailed || !(response == correctResponse));
+    saveComprehensionResponse: function (response, correct_response) {
+      this.comprehension_1_failed = (this.comprehension_1_failed || !(response == correct_response));
       $magpie.saveAndNextScreen();
     }
   }
@@ -412,6 +525,27 @@ export default {
 </script>
 
 <style>
+
+.blue {
+  color: #0433FF;
+  font-weight: bold;
+}
+
+.red {
+  color: #B22222;
+  font-weight: bold;
+}
+
+.yellow {
+  color: #EEB14F;
+  font-weight: bold;
+}
+
+.green {
+  color: #3C902B;
+  font-weight: bold;
+}
+
 .instructions {
   width: 600px;
   margin: 0 auto;
