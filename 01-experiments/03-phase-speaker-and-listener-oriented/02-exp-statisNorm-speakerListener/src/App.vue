@@ -2,10 +2,10 @@
 <template>
   <Experiment title="CausalAttribInference">
     <InstructionScreen :title="'Welcome'">
-      <button @click="$magpie.nextScreen(2)">DEV: Skip to outcome comprehension trials</button>
-      <button @click="$magpie.nextScreen(7)">DEV: Skip to archipelago comprehension trials</button>
-      <button @click="$magpie.nextScreen(10)">DEV: Skip to speaker trials</button>
-      <button @click="$magpie.nextScreen(15)">DEV: Skip to listener trials</button>
+<!--      <button @click="$magpie.nextScreen(2)">DEV: Skip to outcome comprehension trials</button>-->
+<!--      <button @click="$magpie.nextScreen(7)">DEV: Skip to archipelago comprehension trials</button>-->
+<!--      <button @click="$magpie.nextScreen(10)">DEV: Skip to speaker trials</button>-->
+<!--      <button @click="$magpie.nextScreen(15)">DEV: Skip to listener trials</button>-->
 
       Hi! Thanks for taking part!<br/>
       This experiment first introduces a background scenario, which we ask you to read carefully.
@@ -171,7 +171,7 @@
                :options="['Yes', 'No', 'Cannot say']"/>
         </p>
         <br>
-         <p v-if="true">
+         <p v-if="$magpie.measurements.response_control && $magpie.measurements.response_awareness">
           <button @click="$magpie.saveAndNextScreen()">Submit</button>
         </p>
          <Record
@@ -219,7 +219,7 @@
               :options="['Yes', 'No', 'Cannot say']"/>
         </p>
         <br>
-        <p v-if="true">
+        <p v-if="$magpie.measurements.response_bg && $magpie.measurements.response_yr && $magpie.measurements.response_unk">
           <button @click="$magpie.saveAndNextScreen()">Submit</button>
         </p>
         <Record
@@ -345,7 +345,7 @@
               :response.sync="$magpie.measurements.response_right"
           />
 
-          <p v-if="true">
+          <p v-if="$magpie.measurements.response_left > 0 && $magpie.measurements.response_right > 0">
             <button @click="$magpie.saveAndNextScreen()">Submit</button>
           </p>
 
@@ -450,6 +450,8 @@
         </Slide>
       </Screen>
     </template>
+
+    <PostTestScreen/>
 
     <SubmitResultsScreen/>
   </Experiment>

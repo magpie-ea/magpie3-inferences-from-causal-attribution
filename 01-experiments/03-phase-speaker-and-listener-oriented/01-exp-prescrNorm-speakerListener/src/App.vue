@@ -72,13 +72,13 @@
             <ForcedChoiceInput
                 :response.sync="$magpie.measurements.response"
                 :options="['Sound A', 'Sound B']"
-                @update:response="saveComprehensionResponse($magpie.measurements.response,trial.correctResponse)"/>
+                @update:response="saveComprehensionResponse($magpie.measurements.response,trial.correct_response)"/>
 
             <Record
                 :data="{
               trialType : 'comprehension-1-'+attempt,
               trialNr : i+1,
-              correctResponse: trial.correctResponse,
+              correct_response: trial.correct_response,
               response : $magpie.measurements.response,
               effect_valence : effect_valence,
               mechanism : mechanism,
@@ -164,7 +164,7 @@
             :data="{
               trialType : 'comprehension-2',
               trialNr : 1,
-              correctResponse: 'Everyone',
+              correct_response: 'Everyone',
               response : $magpie.measurements.response,
               effect_valence : effect_valence,
               mechanism : mechanism
@@ -194,7 +194,7 @@
             :data="{
               trialType : 'comprehension-2',
               trialNr : 2,
-              correctResponse: 'FALSE',
+              correct_response: 'FALSE',
               response : $magpie.measurements.response,
               effect_valence : effect_valence,
               mechanism : mechanism
@@ -406,7 +406,6 @@
     <PostTestScreen/>
 
     <SubmitResultsScreen/>
-
   </Experiment>
 </template>
 <script>

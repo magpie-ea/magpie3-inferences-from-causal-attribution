@@ -1,0 +1,25 @@
+mechanism,effect_valence,left_marble,right_marble,outcome_sound
+conjunctive,pleasant,blue,red,sound A
+conjunctive,pleasant,blue,green,sound B
+conjunctive,pleasant,yellow,red,sound B
+conjunctive,pleasant,yellow,green,sound B
+conjunctive,neutral,blue,red,sound A
+conjunctive,neutral,blue,green,sound B
+conjunctive,neutral,yellow,red,sound B
+conjunctive,neutral,yellow,green,sound B
+conjunctive,unpleasant,blue,red,sound A
+conjunctive,unpleasant,blue,green,sound B
+conjunctive,unpleasant,yellow,red,sound B
+conjunctive,unpleasant,yellow,green,sound B
+disjunctive,pleasant,blue,red,sound A
+disjunctive,pleasant,blue,green,sound A
+disjunctive,pleasant,yellow,red,sound A
+disjunctive,pleasant,yellow,green,sound B
+disjunctive,neutral,blue,red,sound A
+disjunctive,neutral,blue,green,sound A
+disjunctive,neutral,yellow,red,sound A
+disjunctive,neutral,yellow,green,sound B
+disjunctive,unpleasant,blue,red,sound A
+disjunctive,unpleasant,blue,green,sound A
+disjunctive,unpleasant,yellow,red,sound A
+disjunctive,unpleasant,yellow,green,sound B
