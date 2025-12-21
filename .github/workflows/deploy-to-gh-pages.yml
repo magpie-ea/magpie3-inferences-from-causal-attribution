@@ -15,7 +15,8 @@ jobs:
         folder:
           - ./01-experiments/01-phase-pilot/01-exp-descrNormInference
           - ./01-experiments/02-phase-listener-oriented/01-exp-rerun-descrNormInference
-          - ./01-experiments/02-phase-listener-oriented/02-exp-statNormInference
+          - ./01-experiments/02-phase-listener-oriented/02-exp-statNormInference-pilot-1
+          - ./01-experiments/02-phase-listener-oriented/02-exp-statNormInference-pilot-2
           - ./01-experiments/02-phase-listener-oriented/03-exp-prescrNormInferenceBiased
           - ./01-experiments/03-phase-speaker-and-listener-oriented/01-exp-prescrNorm-speakerListener
           - ./01-experiments/03-phase-speaker-and-listener-oriented/02-exp-statisNorm-speakerListener
