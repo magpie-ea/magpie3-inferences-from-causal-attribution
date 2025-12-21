@@ -1,0 +1,23 @@
+{
+  "name": "magpie3-inferences-from-causal-attribution",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "lint:style": "vue-cli-service lint:style"
+  },
+  "dependencies": {
+    "magpie-base": "^3.6.2"
+  },
+  "engines": {
+    "node": "14.x || 16.x || 18.x",
+    "npm": ">=7.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
