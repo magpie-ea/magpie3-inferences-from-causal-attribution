@@ -23,13 +23,19 @@
         right contains <span class="red">red</span> and <span class="green">green</span> marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
         <br>
-        <strong>Blue marbles are released with a probability of {{ stat_norm == "blue" ? "90" : "10" }}%</strong> from the
-        left compartment, meaning that the released marble will tend to be {{ stat_norm == "blue" ? "blue" : "yellow" }} 9
-        out of 10 times and {{ stat_norm == "blue" ? "yellow" : "blue" }} 1 out of 10 times.
+        <strong>Blue marbles are released with a probability of {{ stat_norm === "blue" ? "90" : "10" }}%</strong> from
+        the
+        left compartment, meaning that the released marble will tend to be {{
+          stat_norm === "blue" ? "blue" : "yellow"
+        }}
+        9
+        out of 10 times and {{ stat_norm === "blue" ? "yellow" : "blue" }} 1 out of 10 times.
         <br>
-        <strong>Red marbles are released with a probability of {{ stat_norm == "blue" ? "10" : "90" }}%</strong> from the
-        right compartment, meaning that the released marble will tend to be {{ stat_norm == "blue" ? "green" : "red" }} 9 out
-        of 10 times and {{ stat_norm == "blue" ? "red" : "green" }} 1 out of 10 times.
+        <strong>Red marbles are released with a probability of {{ stat_norm === "blue" ? "10" : "90" }}%</strong> from
+        the
+        right compartment, meaning that the released marble will tend to be {{ stat_norm === "blue" ? "green" : "red" }}
+        9 out
+        of 10 times and {{ stat_norm === "blue" ? "red" : "green" }} 1 out of 10 times.
       </p>
 
       <p>
@@ -40,14 +46,16 @@
       The islanders have discovered a simple rule that always determines the sound that the machine makes:
       <ul>
         <li>When the machine releases <b>{{
-            mechanism == "conjunctive" ? "both" : "either"
-          }} a <span class="red">red</span> and a <span class="blue">blue</span> marble</b>, the machine makes sound A.
+            mechanism === "conjunctive" ? "both" : "either"
+          }} a <span class="red">red</span> {{
+            mechanism === "conjunctive" ? "and" : "or"
+          }} a <span class="blue">blue</span> marble</b>, the machine makes sound A.
         </li>
         <li>Otherwise, the machine makes sound B.</li>
       </ul>
       <b>Sound B is a simple tone,
         {{
-          effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'
+          effect_valence === 'neutral' ? 'and sound A is also a simple tone' : effect_valence === 'pleasant' ? 'while sound A is a very pleasant melody' : 'while sound  A is a distressing screeching noise'
         }}</b>.
 
       <p>
@@ -58,15 +66,16 @@
     </InstructionScreen>
 
     <template v-for="attempt in [1,2]">
-      <template v-if="attempt==1 | comprehension_1_failed" v-for="(trial, i) in comprehension_trials">
+      <template v-if="attempt === 1 | comprehension_1_failed" v-for="(trial, i) in comprehension_trials">
         <Screen>
           <Slide>
             Remember the rule that determines the sound that the machine makes:
             <div style="color: gray">
               When the machine releases <b>{{
-                mechanism == "conjunctive" ? "both" : "either"
-              }} a <span class="red">red</span> and a <span class="blue">blue</span> marble</b>, the machine makes sound
-              A.
+                mechanism === "conjunctive" ? "both" : "either"
+              }} a <span class="red">red</span> {{
+                mechanism === "conjunctive" ? "and" : "or"
+              }} a <span class="blue">blue</span> marble</b>, the machine makes sound A.
               Otherwise, the machine makes sound B.
             </div>
 
@@ -78,7 +87,7 @@
             </p>
             <ForcedChoiceInput
                 :response.sync="$magpie.measurements.response"
-                :options="['Sound A', 'Sound B']"
+                :options="['sound A', 'sound B']"
                 @update:response="saveComprehensionResponse($magpie.measurements.response,trial.correct_response)"/>
 
             <Record
@@ -96,23 +105,24 @@
         </Screen>
       </template>
 
-      <InstructionScreen v-if="attempt==1">
+      <InstructionScreen v-if="attempt === 1">
         <p v-if="!comprehension_1_failed">Great, you understand how the marble machine works. Let's carry on!</p>
 
-        <p v-if="comprehension_1_failed"> Oops! You made a mistake.<br/>
+        <p v-if="comprehension_1_failed"> Oops! You made a mistake in at least one of your answers.<br/>
 
           Remember the rule that determines the sound that the machine makes:
           <ul>
             <li>When the machine releases <b>{{
-                mechanism == "conjunctive" ? "both" : "either"
-              }} a <span class="red">red</span> and a <span class="blue">blue</span> marble</b>, the machine makes sound
-              A.
+                mechanism === "conjunctive" ? "both" : "either"
+              }} a <span class="red">red</span> {{
+                mechanism === "conjunctive" ? "and" : "or"
+              }} a <span class="blue">blue</span> marble</b>, the machine makes sound A.
             </li>
             <li>Otherwise, the machine makes sound B.</li>
           </ul>
           <b>Sound B is a simple tone,
             {{
-              effect_valence == 'neutral' ? 'and Sound A is also a simple tone' : effect_valence == 'pleasant' ? 'while Sound A is a very pleasant melody' : 'while Sound  A is a distressing screeching noise'
+              effect_valence === 'neutral' ? 'and sound A is also a simple tone' : effect_valence === 'pleasant' ? 'while sound A is a very pleasant melody' : 'while sound  A is a distressing screeching noise'
             }}</b>.
 
           <br/>
@@ -129,8 +139,8 @@
       <Slide>
         Remember also that the marbles are released with different probabilities:
         <p style="color: gray">
-          Blue marbles are released with a probability of {{ stat_norm == "blue" ? "90" : "10" }}%.<br>
-          Red marbles are released with a probability of {{ stat_norm == "blue" ? "10" : "90" }}%.
+          Blue marbles are released with a probability of {{ stat_norm === "blue" ? "90" : "10" }}%.<br>
+          Red marbles are released with a probability of {{ stat_norm === "blue" ? "10" : "90" }}%.
         </p>
 
         <p>
@@ -146,7 +156,7 @@
             :data="{
               trialType : 'comprehension-2',
               trialNr : 1,
-              correct_response:  stat_norm == 'blue' ? 'Blue marble' : 'Red marble',
+              correct_response:  stat_norm === 'blue' ? 'Blue marble' : 'Red marble',
               response : $magpie.measurements.correct_response_bias,
               effect_valence : effect_valence,
               mechanism : mechanism,
@@ -159,14 +169,14 @@
     <InstructionScreen :title="'Further Instructions'">
       <p>
         There are two religions on the island.
-        In religion 1, the color <span class="red">red</span> is thought to be impure—for example, believers in Religion
+        In religion 1, the color <span class="red">red</span> is thought to be impure—for example, believers in religion
         1 avoid wearing red
         clothes.
         So when they use the marble machine, they think 'red marbles should not be released'.
       </p>
       <p>
         In religion 2, the color <span class="blue">blue</span> is thought to be sinful—for example, believers in
-        Religion 2 avoid using blue
+        religion 2 avoid using blue
         paint in their artwork.
         So when they use the marble machine, they think 'blue marbles should not be released'.
       </p>
@@ -175,8 +185,14 @@
 
       <p>
         Of course, the users of the marble machine cannot control which marbles will come out.
-        So, the machine will release a <span class="red">red</span> marble with {{ bias == "blue" ? "10" : "90" }}% probability and a <span class="blue">blue</span> marble with {{ bias == "blue" ? "90" : "10" }}% probability, no matter who presses the Start button.
-        Everyone on the island knows how the marble machine works. Even people of different religions completely agree with each other about how the machine works.
+        So, the machine will release a <span class="red">red</span> marble with {{
+          stat_norm === "blue" ? "10" : "90"
+        }}%
+        probability and a <span class="blue">blue</span> marble with {{ stat_norm === "blue" ? "90" : "10" }}%
+        probability, no
+        matter who presses the Start button.
+        Everyone on the island knows how the marble machine works. Even people of different religions completely agree
+        with each other about how the machine works.
       </p>
     </InstructionScreen>
 
@@ -193,7 +209,7 @@
 
         <ForcedChoiceInput
             :response.sync="$magpie.measurements.response"
-            :options="['Everyone', 'Followers of Religion 1', 'Followers of Religion 2']"
+            :options="['Everyone', 'Followers of religion 1', 'Followers of religion 2']"
             @update:response="$magpie.saveAndNextScreen();"/>
 
         <Record
@@ -259,18 +275,18 @@
             </span>
 
             Because
-            {{ (mechanism == 'conjunctive' ? "both " : "at least ") }}
+            {{ (mechanism === 'conjunctive' ? "both " : "at least ") }}
             a <span class="blue">blue</span> marble
-            {{ (mechanism == 'conjunctive' ? "and " : "or ") }}
+            {{ (mechanism === 'conjunctive' ? "and " : "or ") }}
             <span class="red">red</span> marble
-            {{ (mechanism == 'conjunctive' ? "have " : "has ") }}
+            {{ (mechanism === 'conjunctive' ? "have " : "has ") }}
             <u>{{
-                (trial.left_marble == 'blue' & trial.right_marble == 'red' ? '' :
-                    (trial.left_marble == 'blue' | trial.right_marble == 'red' ? (mechanism == 'conjunctive' ? 'not' : '') : 'not'))
+                (trial.left_marble === 'blue' & trial.right_marble === 'red' ? '' :
+                    (trial.left_marble === 'blue' | trial.right_marble === 'red' ? (mechanism === 'conjunctive' ? 'not' : '') : 'not'))
               }}</u>
             been released, the machine emits {{ trial.outcome_sound }},
             {{
-              trial.outcome_sound == 'sound A' ? (effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise') : ('a simple tone')
+              trial.outcome_sound === 'sound A' ? (effect_valence === 'neutral' ? 'a simple tone' : effect_valence === 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise') : ('a simple tone')
             }}.</p>
 
           <p>
@@ -283,10 +299,9 @@
           </p>
 
           <p class="instructions">
-            Given the situation, decide how likely is the follower of <b>religion 1</b>, who regards <span class="red">red</span>
-            as impure, to
-            say
-            the following following:
+            Given the situation, decide how likely the follower of <b>religion 1</b>, who regards <span
+              class="red">red</span>
+            as impure, is to say the following following:
           </p>
           <br/>
 
@@ -309,9 +324,8 @@
 
           <br>
           <p class="instructions">
-            Given the situation, decide how likely is the follower of <b>religion 2</b>, who regards <span class="blue">blue</span>
-            as impure, to
-            say the following following:
+            Given the situation, decide how likely the follower of <b>religion 2</b>, who regards <span class="blue">blue</span>
+            as impure, is to say the following following:
           </p>
           <br/>
 
@@ -373,18 +387,18 @@
             }}</span>, and the marble released from the
             right compartment is <span :class="trial.right_marble">{{ trial.right_marble }}</span>.
             Because
-            {{ (mechanism == 'conjunctive' ? "both " : "at least ") }}
+            {{ (mechanism === 'conjunctive' ? "both " : "at least ") }}
             a <span class="blue">blue</span> marble
-            {{ (mechanism == 'conjunctive' ? "and " : "or ") }}
+            {{ (mechanism === 'conjunctive' ? "and " : "or ") }}
             <span class="red">red</span> marble
-            {{ (mechanism == 'conjunctive' ? "have " : "has ") }}
+            {{ (mechanism === 'conjunctive' ? "have " : "has ") }}
             <u>{{
-                (trial.left_marble == 'blue' & trial.right_marble == 'red' ? '' :
-                    (trial.left_marble == 'blue' | trial.right_marble == 'red' ? (mechanism == 'conjunctive' ? 'not' : '') : 'not'))
+                (trial.left_marble === 'blue' & trial.right_marble === 'red' ? '' :
+                    (trial.left_marble === 'blue' | trial.right_marble === 'red' ? (mechanism === 'conjunctive' ? 'not' : '') : 'not'))
               }}</u>
             been released, the machine emits {{ trial.outcome_sound }},
             {{
-              trial.outcome_sound == 'sound A' ? (effect_valence == 'neutral' ? 'a simple tone' : effect_valence == 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise') : ('a simple tone')
+              trial.outcome_sound === 'sound A' ? (effect_valence === 'neutral' ? 'a simple tone' : effect_valence === 'pleasant' ? 'a very pleasant melody' : 'a distressing, screeching noise') : ('a simple tone')
             }}.
           </p>
 
@@ -398,9 +412,9 @@
           </p>
 
           <p class="instructions">
-            The islander says: <b>'The machine emitted sound A because a
-            <span :class="trial.actual_outcome == 'left' ? trial.left_marble : trial.right_marble">{{
-                trial.actual_outcome == 'left' ? trial.left_marble : trial.right_marble
+            The islander says: <b>'The machine emitted {{ trial.outcome_sound }} because a
+            <span :class="trial.actual_outcome === 'left' ? trial.left_marble : trial.right_marble">{{
+                trial.actual_outcome === 'left' ? trial.left_marble : trial.right_marble
               }}</span>
             marble was released'</b>.
           </p>
@@ -473,27 +487,27 @@ const callout_biased_marble_machine = 'images/callout-biased-marble-machine-' + 
 
 // comprehension
 const comprehension_trials = _.shuffle(_.filter(comprehension_trials_all, function (i) {
-  return i.mechanism == mechanism
+  return i.mechanism === mechanism
 }))
 
 // speaker trials
 const outcomes_speaker = _.filter(outcomes_speaker_all, function (i) {
-  return i.mechanism == mechanism & i.effect_valence == effect_valence;
+  return i.mechanism === mechanism & i.effect_valence === effect_valence;
 })
 const speaker_trials = _.shuffle([outcomes_speaker[0], _.sample(outcomes_speaker.slice(1))]);
 
 // listener trials
 const outcomes_listener = _.filter(outcomes_listener_all, function (i) {
-  return i.mechanism == mechanism & i.effect_valence == effect_valence;
+  return i.mechanism === mechanism & i.effect_valence === effect_valence;
 })
 // participants may be asked to identify whether the sound was caused by the marble released from either the left or right compartment
 const main_trial_outcome = _.sample(["left", "right"]);
 const main_trial = _.filter(outcomes_listener.slice(0, 2), function (i) {
-  return i.actual_outcome == main_trial_outcome;
+  return i.actual_outcome === main_trial_outcome;
 })[0]
 const other_trial_outcome = _.sample(["left", "right"]);
 const other_trial = _.sample(_.filter(outcomes_listener.slice(2), function (i) {
-  return i.actual_outcome == other_trial_outcome;
+  return i.actual_outcome === other_trial_outcome;
 }))
 const listener_trials = _.shuffle([main_trial, other_trial]);
 
@@ -522,7 +536,7 @@ export default {
   },
   methods: {
     saveComprehensionResponse: function (response, correct_response) {
-      this.comprehension_1_failed = (this.comprehension_1_failed || !(response == correct_response));
+      this.comprehension_1_failed = (this.comprehension_1_failed || !(response === correct_response));
       $magpie.saveAndNextScreen();
     }
   }

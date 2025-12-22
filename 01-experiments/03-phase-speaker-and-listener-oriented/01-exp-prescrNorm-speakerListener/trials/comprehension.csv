@@ -1,9 +1,10 @@
-mechanism,trialNr,picture,correctResponse
-disjunctive,1,images/comprehension-blue-red.png,Sound A
-disjunctive,2,images/comprehension-blue-green.png,Sound A
-disjunctive,3,images/comprehension-yellow-red.png,Sound A
-disjunctive,4,images/comprehension-yellow-green.png,Sound B
-conjunctive,1,images/comprehension-blue-red.png,Sound A
-conjunctive,2,images/comprehension-blue-green.png,Sound B
-conjunctive,3,images/comprehension-yellow-red.png,Sound B
-conjunctive,4,images/comprehension-yellow-green.png,Sound B
+mechanism,trialNr,picture,correct_response
+disjunctive,1,images/comprehension-blue-red.png,sound A
+disjunctive,2,images/comprehension-blue-green.png,sound A
+disjunctive,3,images/comprehension-yellow-red.png,sound A
+disjunctive,4,images/comprehension-yellow-green.png,sound B
+conjunctive,1,images/comprehension-blue-red.png,sound A
+conjunctive,2,images/comprehension-blue-green.png,sound B
+conjunctive,3,images/comprehension-yellow-red.png,sound B
+conjunctive,4,images/comprehension-yellow-green.png,sound B
+,,,
