@@ -79,13 +79,13 @@
             <ForcedChoiceInput
                 :response.sync="$magpie.measurements.response"
                 :options="['sound A', 'sound B']"
-                @update:response="saveComprehensionResponse($magpie.measurements.response,trial.correctResponse)"/>
+                @update:response="saveComprehensionResponse($magpie.measurements.response,trial.correct_response)"/>
 
             <Record
                 :data="{
               trialType : 'comprehension-1-'+ attempt,
               trialNr : i+1,
-              correctResponse: trial.correctResponse,
+              correct_response: trial.correct_response,
               response : $magpie.measurements.response,
               effect_valence : effect_valence,
               mechanism : mechanism,
@@ -169,7 +169,7 @@
         <br>
 
         <p class="instructions">
-          <b>Does a person from island labeled <img src="images/label-B-G.png"
+          <b>Does a person from an island labeled <img src="images/label-B-G.png"
                                                     style="width: 8%; vertical-align: middle"/> know about a machine
             from an island labeled <img src="images/label-Y-R.png" style="width: 8%; vertical-align: middle"/>, or vice
             versa? </b>

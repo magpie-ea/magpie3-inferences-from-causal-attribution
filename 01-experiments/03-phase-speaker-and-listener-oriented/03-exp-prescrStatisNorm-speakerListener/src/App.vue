@@ -216,7 +216,7 @@
             :data="{
               trialType : 'comprehension-3',
               trialNr : 1,
-              correctResponse: 'Everyone',
+              correct_response: 'Everyone',
               response : $magpie.measurements.response,
               effect_valence : effect_valence,
               mechanism : mechanism
@@ -246,7 +246,7 @@
             :data="{
               trialType : 'comprehension-3',
               trialNr : 2,
-              correctResponse: 'FALSE',
+              correct_response: 'FALSE',
               response : $magpie.measurements.response,
               effect_valence : effect_valence,
               mechanism : mechanism

@@ -125,7 +125,7 @@
 
     <InstructionScreen :title="'Further Instructions'">
       <p>
-        There are two religions on the island.
+        There are two religions on the island.<br>
         In religion 1, the color <span class="red">red</span> is thought to be impure—for example, believers in religion
         1 avoid wearing red
         clothes.
