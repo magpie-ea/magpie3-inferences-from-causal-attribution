@@ -84,15 +84,13 @@
     </template>
 
     <InstructionScreen :title="'Further Instructions'">
-      <p>There are two religions on the island.<br>
+      There are two religions on the island.
       In religion 1, the color Red is thought to be impure---for example, believers in Religion 1 avoid wearing red clothes.
       So when they use the marble machine, they think `Red marbles should not be released’.
-      </p>
-      
-      <p>In religion 2, the color Blue is thought to be sinful---for example, believers in Religion 2 avoid using blue paint in their artwork.
+      <br><br>
+      In religion 2, the color Blue is thought to be sinful---for example, believers in Religion 2 avoid using blue paint in their artwork.
       So when they use the marble machine, they think `Blue marbles should not be released’.
-      </p>
-      <br>
+      <br><br>
 
       <p>
         <img src="images/color-preferences.png" />
