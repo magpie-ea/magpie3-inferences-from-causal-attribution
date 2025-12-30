@@ -8,9 +8,12 @@
       <!--      <button @click="$magpie.nextScreen(15)">DEV: Skip to listener trials</button>-->
 
       Hi! Thanks for taking part!<br/>
-      This experiment first introduces a background scenario, which we ask you to read carefully.
-      You will be asked to answer basic comprehension questions about the scenario.
-      We then ask you about your interpretation of some utterances of some characters in the story.
+      This experiment first introduces you to a background scenario.
+      Please read the description closely and pay careful attention as there are several important details you need to
+      remember. You will be asked simple comprehension questions to make sure you understand and retain all the
+      information.
+      Later, you will evaluate how characters might respond to situations and interpret some of their statements.
+
     </InstructionScreen>
 
     <InstructionScreen :title="'Instructions'">
@@ -18,14 +21,14 @@
         In this experiment, you will play the role of an anthropologist visiting a faraway civilisation that lives on a
         remote archipelago.
         The civilisation possesses a technology of unknown origin: <b>the marble machine</b>.
-        They have several of these ancient artefacts; in fact, there is one such machine on each island of the
+        There are several of these ancient artefacts; in fact, there is exactly one marble machine on each island of the
         archipelago.<br>
         All inhabitants of the archipelago know how the marble machines work:
         The compartment on the left of each machine contains <span class="blue">blue</span> and <span class="yellow">yellow</span>
         marbles, and the compartment on the right
         contains <span class="red">red</span> and <span class="green">green</span> marbles (see picture below).
         When someone presses the ‘Start’ button, one marble is released from each compartment of the machine.
-        On each side, the marble is chosen completely at random.
+        On each side, the marble is chosen by some random process (more on this in a moment).
       </p>
 
       <p>
@@ -225,11 +228,11 @@
                 class="red">red</span> marble
             is more likely to be released than a <span class="green">green</span> marble?</b>
           <MultipleChoiceInput
-              :response.sync="$magpie.measurements.response_unk"
+              :response.sync="$magpie.measurements.response_unlabeled"
               :options="['Yes', 'No', 'Cannot say']"/>
         </p>
         <br>
-        <p v-if="$magpie.measurements.response_bg && $magpie.measurements.response_yr && $magpie.measurements.response_unk">
+        <p v-if="$magpie.measurements.response_bg && $magpie.measurements.response_yr && $magpie.measurements.response_unlabeled">
           <button @click="$magpie.saveAndNextScreen()">Submit</button>
         </p>
         <Record
@@ -242,8 +245,8 @@
               correct_response_bg : 'Yes',
               response_yr : $magpie.measurements.response_yr,
               correct_response_yr : 'The probability of a yellow marble being released is the same as of a red marble being released.',
-              response_unk : $magpie.measurements.response_unk,
-              correct_response_unk : 'Cannot say'
+              response_unlabeled : $magpie.measurements.response_unlabeled,
+              correct_response_unlabeled: 'Cannot say'
             }"
         />
       </Slide>
@@ -370,7 +373,7 @@
           <Record
               :data="{
               trialType : 'critical-speaker',
-              trialNr : i,
+              trialNr : i+1,
               mechanism: mechanism,
               effect_valence: effect_valence,
               island_type : trial.island_type,
@@ -461,14 +464,14 @@
           <Record
               :data="{
               trialType : 'critical-listener',
-              trialNr : i,
+              trialNr : i+1,
               effect_valence : effect_valence,
               mechanism : mechanism,
               actual_outcome : trial.actual_outcome,
               left_marble : trial.left_marble,
               right_marble : trial.right_marble,
               outcome_sound : trial.outcome_sound,
-              response_unnk : $magpie.measurements.response_unk
+              response_unk : $magpie.measurements.response_unk
             }"
           />
         </Slide>

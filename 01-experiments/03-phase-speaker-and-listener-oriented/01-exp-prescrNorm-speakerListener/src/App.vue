@@ -7,9 +7,12 @@
       <!--      <button @click="$magpie.nextScreen(12)">DEV: Skip to listener trials</button>-->
 
       Hi! Thanks for taking part!<br/>
-      This experiment first introduces a background scenario, which we ask you to read carefully.
-      You will be asked to answer basic comprehension questions about the scenario.
-      We then ask you about your interpretation of some utterances of some characters in the story.
+      This experiment first introduces you to a background scenario.
+      Please read the description closely and pay careful attention as there are several important details you need to
+      remember. You will be asked simple comprehension questions to make sure you understand and retain all the
+      information.
+      Later, you will evaluate how characters might respond to situations and interpret some of their statements.
+
     </InstructionScreen>
 
     <InstructionScreen :title="'Instructions'">
@@ -303,7 +306,7 @@
           <Record
               :data="{
               trialType : 'critical-speaker',
-              trialNr : i,
+              trialNr : i+1,
               effect_valence : effect_valence,
               mechanism : mechanism,
               left_marble : trial.left_marble,
@@ -388,7 +391,7 @@
           <Record
               :data="{
               trialType : 'critical-listener',
-              trialNr : i,
+              trialNr : i + 1,
               effect_valence : effect_valence,
               mechanism : mechanism,
               actual_outcome : trial.actual_outcome,
