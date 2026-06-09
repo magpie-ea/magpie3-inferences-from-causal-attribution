@@ -1,0 +1,7 @@
+mechanism,valence,mean,sd
+conjunctive,pleasant,3.2,0.8
+conjunctive,neutral,4.9,0.8
+conjunctive,unpleasant,5.6,0.8
+disjunctive,pleasant,3,0.8
+disjunctive,neutral,3.5,0.8
+disjunctive,unpleasant,6,0.8

@@ -1,0 +1,13 @@
+normality,mechanism,valence,mean,sd
+normal,conjunctive,pleasant,2.5,0.8
+normal,conjunctive,neutral,3.5,0.8
+normal,conjunctive,unpleasant,5.5,0.8
+abnormal,conjunctive,pleasant,3.5,0.8
+abnormal,conjunctive,neutral,4.5,0.8
+abnormal,conjunctive,unpleasant,6.5,0.8
+normal,disjunctive,pleasant,3.5,0.8
+normal,disjunctive,neutral,4.5,0.8
+normal,disjunctive,unpleasant,6.5,0.8
+abnormal,disjunctive,pleasant,2.5,0.8
+abnormal,disjunctive,neutral,3.5,0.8
+abnormal,disjunctive,unpleasant,5.5,0.8
